@@ -6,7 +6,7 @@ public class NoteManager : MonoBehaviour
     {
         // Check if the note has already been played
         MoveNote noteMover = note.GetComponent<MoveNote>();
-        if (noteMover != null && !noteMover.played)
+        if (noteMover != null && noteMover.played == false)
         {
             // Play the sound
             AudioSource audioSource = note.GetComponent<AudioSource>();

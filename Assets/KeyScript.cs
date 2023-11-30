@@ -7,7 +7,6 @@ public class NewBehaviourScript : MonoBehaviour
     
     public KeyCode toggleKey = KeyCode.Space; // Set your desired key here
     private SpriteRenderer spriteRenderer;
-    public NoteManager noteManager;
     public float detectionRadius = 2f;
 
     void Start()
@@ -61,8 +60,7 @@ public class NewBehaviourScript : MonoBehaviour
                 MoveNote moveNoteScript = hitCollider.gameObject.GetComponent<MoveNote>();
                 if (moveNoteScript != null && !moveNoteScript.played)
                 {
-                    noteManager.PlayNote(hitCollider.gameObject);
-                    noteFound = true;
+                    moveNoteScript.PlayNote();
                     break; // Play only the first unplayed note encountered
                 }
             }
@@ -70,7 +68,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (!noteFound)
         {
-            Debug.Log("No unplayed notes found within box");
+            // if needed
         }
     }
 
