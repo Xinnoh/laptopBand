@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour
+public class DrumSpawner : MonoBehaviour
 {
+
     public GameObject prefab;
     public float spawnWidth = 5f;
     public float xOffset, yOffset;
@@ -14,24 +15,19 @@ public class ObjectSpawner : MonoBehaviour
 
     private FileInfo[] files = null;
 
-    private List<string> dataLines = new List<string> { };
+    private List<string> dataLines = new List<string>{
+        "0,192,252,5,0,0:0:0:0:,D8",
+        "512,192,735,1,0,0:0:0:0:,C5",
+        "256,192,1219,1,0,0:0:0:0:,G3",
+        "376,192,1703,1,0,0:0:0:0:",
+        "160,192,1945,1,0,0:0:0:0:",
+        "328,192,2187,1,0,0:0:0:0:",
+        "56,192,2429,1,0,0:0:0:0:",
+        "448,192,2671,1,0,0:0:0:0:"
+    };
 
     void Start()
     {
-
-        if(gamemode== 0)
-        {
-            dataLines = pianoLines;
-        }
-        else if(gamemode == 1)
-        {
-            dataLines = drumLines;
-        }
-        else if(gamemode == 2)
-        {
-            dataLines = trumpetLines;
-        }
-
         // Load all wav files
         files = GetResourceFiles("*.wav");
         StartCoroutine(SpawnObjects());
@@ -82,33 +78,6 @@ public class ObjectSpawner : MonoBehaviour
                     audioSource.clip = clip;
                 }
             }
-
-            //Piano
-            if(gamemode == 0)
-            {
-
-            }
-
-            //Drum
-            else if(gamemode == 1)
-            {
-
-            }
-
-            //Trumpet
-            else
-            {
-
-            }
-
-
-
-
-
-
-
-
-
         }
     }
 
@@ -128,68 +97,14 @@ public class ObjectSpawner : MonoBehaviour
     {
         Gizmos.color = Color.green; // Set the color of the Gizmos
 
-        if (gamemode == 0)
+        foreach (string line in dataLines)
         {
-            foreach (string line in pianoLines)
-            {
-                var parts = line.Split(',');
-                float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
-                Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
-                Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
-                Gizmos.DrawCube(startPos, size);
+            var parts = line.Split(',');
+            float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
+            Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
 
-            }
-        }
-
-        else if(gamemode == 1)
-        {
-            foreach (string line in drumLines)
-            {
-                var parts = line.Split(',');
-                float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
-                Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
-                Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
-                Gizmos.color = Color.red;
-                Gizmos.DrawCube(startPos, size);
-            }
+            // Draw a small cube at each spawn position
+            Gizmos.DrawCube(startPos, new Vector3(0.45f, 0.16f, 0.43f)); // You can adjust the size as needed
         }
     }
-
-
-
-
-    private List<string> pianoLines = new List<string>{
-        "0,192,252,5,0,0:0:0:0:,D8",
-        "512,192,735,1,0,0:0:0:0:,C5",
-        "256,192,1219,1,0,0:0:0:0:,G3",
-        "376,192,1703,1,0,0:0:0:0:",
-        "160,192,1945,1,0,0:0:0:0:",
-        "328,192,2187,1,0,0:0:0:0:",
-        "56,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
-    };
-
-
-    private List<string> drumLines = new List<string>{
-        "112,192,252,5,0,0:0:0:0:,D8",
-        "224,192,735,1,0,0:0:0:0:,C5",
-        "336,192,1219,1,0,0:0:0:0:,G3",
-        "448,192,1703,1,0,0:0:0:0:",
-        "112,192,1945,1,0,0:0:0:0:",
-        "224,192,2187,1,0,0:0:0:0:",
-        "336,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
-    };
-
-
-    private List<string> trumpetLines = new List<string>{
-        "0,192,252,5,0,0:0:0:0:,D8",
-        "512,192,735,1,0,0:0:0:0:,C5",
-        "256,192,1219,1,0,0:0:0:0:,G3",
-        "376,192,1703,1,0,0:0:0:0:",
-        "160,192,1945,1,0,0:0:0:0:",
-        "328,192,2187,1,0,0:0:0:0:",
-        "56,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
-    };
 }
