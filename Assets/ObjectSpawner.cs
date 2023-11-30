@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -12,10 +13,12 @@ public class ObjectSpawner : MonoBehaviour
     public float noteSpeed = 5f;
     public float initialSpeed = 3f;
 
+    private FileInfo[] files = null;
+
     private List<string> dataLines = new List<string>{
-        "48,192,252,5,0,0:0:0:0:",
-        "136,192,735,1,0,0:0:0:0:",
-        "240,192,1219,1,0,0:0:0:0:",
+        "48,192,252,5,0,0:0:0:0:,D8S",
+        "136,192,735,1,0,0:0:0:0:,C5S",
+        "240,192,1219,1,0,0:0:0:0:,G3S",
         "376,192,1703,1,0,0:0:0:0:",
         "160,192,1945,1,0,0:0:0:0:",
         "328,192,2187,1,0,0:0:0:0:",
@@ -25,7 +28,16 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
+        files = GetResourceFiles("*.wav");
+
         StartCoroutine(SpawnObjects());
+    }
+
+    private FileInfo[] GetResourceFiles(string searchPattern)
+    {
+        DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath + "\\Resources");
+        FileInfo[] files = dirInfo.GetFiles(searchPattern);
+        return files;
     }
 
     IEnumerator SpawnObjects()
@@ -44,14 +56,8 @@ public class ObjectSpawner : MonoBehaviour
                 lastSpawnTime = spawnTime;
             }
 
-
             Vector3 startPos = new Vector3(xPosition, startPosition, 0);
             Vector3 endPosition = new Vector3(MapPosition(float.Parse(parts[0]), endRange / 2), -scrollDistance, 0);
-
-            // Calculate horizontal speed
-            float timeToTravelScrollDistance = scrollDistance / noteSpeed;
-            float endXPosition = MapPosition(float.Parse(parts[0]), endRange);
-            float horSpeed = (endXPosition - xPosition) / timeToTravelScrollDistance;
 
             GameObject newNote = Instantiate(prefab, startPos, Quaternion.identity);
             MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
@@ -61,11 +67,25 @@ public class ObjectSpawner : MonoBehaviour
             moveNoteScript.totalTimeToTravel = scrollDistance / noteSpeed;
             moveNoteScript.initialSpeed = initialSpeed;
             moveNoteScript.maxSpeed = noteSpeed;
-
             moveNoteScript.yRotation = MapPosition(float.Parse(parts[0]), -33f);
 
+            // Check if there is an audio file name specified and load the clip
+            if (parts.Length > 6 && !string.IsNullOrEmpty(parts[6].Trim()))
+            {
+                string audioFileName = parts[6].Trim();
+                string filename = Path.GetFileNameWithoutExtension(audioFileName);
+
+                AudioClip clip = Resources.Load<AudioClip>(filename);
+                AudioSource audioSource = newNote.GetComponent<AudioSource>();
+
+                if (audioSource != null && clip != null)
+                {
+                    audioSource.clip = clip;
+                }
+            }
         }
     }
+
 
 
     float MapPosition(float originalPosition, float targetMax)
