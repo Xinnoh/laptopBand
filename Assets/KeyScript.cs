@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyScript : MonoBehaviour
 {
     
+
     public KeyCode toggleKey = KeyCode.Space; // Set your desired key here
     private SpriteRenderer spriteRenderer;
     public float detectWidth = 2f;
@@ -27,14 +28,13 @@ public class KeyScript : MonoBehaviour
     {
         if (Input.GetKeyDown(toggleKey))
         {
-            SetOpacity(1f); // Fully opaque
+            SetOpacity(1f); 
             CheckAndPlayNote();
-
         }
 
         if (Input.GetKeyUp(toggleKey))
         {
-            SetOpacity(0.5f); // Semi-transparent, change as needed
+            SetOpacity(0.5f); 
         }
     }
 
@@ -49,18 +49,29 @@ public class KeyScript : MonoBehaviour
     }
     private void CheckAndPlayNote()
     {
+        string hitType = "Miss"; // Default to "Miss" if no hit is detected
+
         // Central 'Perfect' hit detection area
         if (CheckHit(new Vector2(detectWidth, perfectDetectHeight), "Perfect"))
-            return;
+        {
+            hitType = "Perfect";
+        }
+        else if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, -(perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
+        {
+            hitType = "Great";
+        }
+        else if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, (perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
+        {
+            hitType = "Great";
+        }
 
-        // Top 'Great' early hit detection area
-        if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, -(perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
-            return;
-
-        // Bottom 'Great' late hit detection area
-        if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, (perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
-            return;
+        if(hitType != "Miss")
+        {
+            // Register the hit with the ScoreManager
+            ScoreManager.Instance.RegisterHit(hitType, keyType);
+        }
     }
+
 
     private bool CheckHit(Vector2 size, string hitType, Vector2 additionalOffset = default)
     {
