@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class KeyScript : MonoBehaviour
 {
     
     public KeyCode toggleKey = KeyCode.Space; // Set your desired key here
     private SpriteRenderer spriteRenderer;
-    public float detectionRadius = 2f;
+    public float detectWidth = 2f;
+    public float detectHeight = 2f;
+    public float offsetX, offsetY;
+    public float perfectDetectHeight; // Smaller width for the 'Perfect' hit detection
+
+    public int keyType;
 
     void Start()
     {
@@ -42,17 +47,26 @@ public class NewBehaviourScript : MonoBehaviour
             spriteRenderer.color = color;
         }
     }
-
     private void CheckAndPlayNote()
     {
-        // Define the size of the box (2 units width and 4 units height)
-        Vector2 size = new Vector2(2f, 4f);
-        // Center of the box at the object's position
-        Vector2 boxCenter = (Vector2)transform.position;
+        // Central 'Perfect' hit detection area
+        if (CheckHit(new Vector2(detectWidth, perfectDetectHeight), "Perfect"))
+            return;
 
+        // Top 'Great' early hit detection area
+        if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, -(perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
+            return;
+
+        // Bottom 'Great' late hit detection area
+        if (CheckHit(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), "Great", new Vector2(0, (perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)))
+            return;
+    }
+
+    private bool CheckHit(Vector2 size, string hitType, Vector2 additionalOffset = default)
+    {
+        Vector2 boxCenter = (Vector2)transform.position + new Vector2(offsetX, offsetY) + additionalOffset;
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(boxCenter, size, 0);
 
-        bool noteFound = false;
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Note"))
@@ -61,26 +75,32 @@ public class NewBehaviourScript : MonoBehaviour
                 if (moveNoteScript != null && !moveNoteScript.played)
                 {
                     moveNoteScript.PlayNote();
-                    break; // Play only the first unplayed note encountered
+                    Debug.Log(hitType + " hit!");
+                    return true;
                 }
             }
         }
-
-        if (!noteFound)
-        {
-            // if needed
-        }
+        return false;
     }
-
-
     private void OnDrawGizmosSelected()
     {
-        // Draw a gizmo in the editor to show the detection area
-        Vector2 size = new Vector2(2f, 4f);
-        Vector2 boxCenter = (Vector2)transform.position;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(boxCenter, size);
+        // Central 'Perfect' hit detection area
+        DrawHitDetectionGizmo(new Vector2(detectWidth, perfectDetectHeight), new Color(0, 1, 0, 0.5f)); // Green, semi-transparent
+
+        // Top 'Great' early hit detection area
+        DrawHitDetectionGizmo(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), new Color(1, 1, 0, 0.5f), new Vector2(0, -(perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)); // Yellow, semi-transparent
+
+        // Bottom 'Great' late hit detection area
+        DrawHitDetectionGizmo(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), new Color(1, 1, 0, 0.5f), new Vector2(0, (perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)); // Yellow, semi-transparent
     }
+
+    private void DrawHitDetectionGizmo(Vector2 size, Color color, Vector2 additionalOffset = default)
+    {
+        Vector2 boxCenter = (Vector2)transform.position + new Vector2(offsetX, offsetY) + additionalOffset;
+        Gizmos.color = color;
+        Gizmos.DrawCube(boxCenter, size); // Draw solid, semi-transparent cube
+    }
+
 
 
 }
