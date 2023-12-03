@@ -11,12 +11,14 @@ public class MoveNote : MonoBehaviour
 
     private void Update()
     {
+
         if (!played)
         {
             // Move the note downwards at a consistent speed
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
     }
+
     public void PlayNote(bool isHit)
     {
         if (!played)
@@ -57,7 +59,7 @@ public class MoveNote : MonoBehaviour
             played = true;
 
             // Schedule the object for deletion after 3 seconds
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 1f);
         }
     }
 

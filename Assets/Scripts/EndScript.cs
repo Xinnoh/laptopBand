@@ -8,11 +8,7 @@ public class EndCollisionHandler : MonoBehaviour
 
     private void Update()
     {
-        if (CheckForMiss(detectionSize))
-        {
-            Debug.Log("Miss");
-            // ScoreManager.Instance.RegisterHit("Miss", gamemode); // Uncomment this when ready
-        }
+        CheckForMiss(detectionSize);
     }
 
     private bool CheckForMiss(Vector2 size)

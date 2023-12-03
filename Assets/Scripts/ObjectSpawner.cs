@@ -34,8 +34,14 @@ public class ObjectSpawner : MonoBehaviour
 
         // Load all wav files
         files = GetResourceFiles("*.wav");
-        StartCoroutine(SpawnObjects());
     }
+
+
+    public void startSpawning(float delay)
+    {
+        StartCoroutine(SpawnObjects(delay));
+    }
+
 
     // Audio file loading
     private FileInfo[] GetResourceFiles(string searchPattern)
@@ -45,8 +51,10 @@ public class ObjectSpawner : MonoBehaviour
         return files;
     }
 
-    IEnumerator SpawnObjects()
+    IEnumerator SpawnObjects(float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         float lastSpawnTime = 0.0f;
 
         foreach (string line in dataLines)
@@ -124,18 +132,20 @@ public class ObjectSpawner : MonoBehaviour
 
         return (originalPosition - originalMin) / (originalMax - originalMin) * (targetMax - targetMin) + targetMin;
     }
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green; // Set the color of the Gizmos
 
         if (gamemode == 0)
         {
+
+            Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
+
             foreach (string line in pianoLines)
             {
                 var parts = line.Split(',');
                 float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
                 Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
-                Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
                 Gizmos.DrawCube(startPos, size);
 
             }
@@ -143,13 +153,28 @@ public class ObjectSpawner : MonoBehaviour
 
         else if(gamemode == 1)
         {
+            Gizmos.color = Color.red;
+            Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
+
             foreach (string line in drumLines)
             {
                 var parts = line.Split(',');
                 float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
                 Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
-                Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
-                Gizmos.color = Color.red;
+                Gizmos.DrawCube(startPos, size);
+            }
+        }
+        else if (gamemode == 2)
+        {
+
+            Gizmos.color = Color.blue;
+            Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
+
+            foreach (string line in trumpetLines)
+            {
+                var parts = line.Split(',');
+                float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
+                Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
                 Gizmos.DrawCube(startPos, size);
             }
         }
@@ -171,11 +196,21 @@ public class ObjectSpawner : MonoBehaviour
 
 
     private List<string> drumLines = new List<string>{
-        "448,192,1703,1,0,0:0:0:0:",
-        "112,192,1945,1,0,0:0:0:0:",
-        "224,192,2187,1,0,0:0:0:0:",
-        "336,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
+
+        "448,192,600,1,0,0:0:0:0:",
+        "192,192,600,1,0,0:0:0:0:",
+        "320,192,1427,1,0,0:0:0:0:",
+        "192,192,2668,1,0,0:0:0:0:",
+        "320,192,3082,1,0,0:0:0:0:",
+        "192,192,3496,1,0,0:0:0:0:",
+        "192,192,3910,1,0,0:0:0:0:",
+        "320,192,4737,1,0,0:0:0:0:",
+        "192,192,5565,1,0,0:0:0:0:",
+        "320,192,6393,1,0,0:0:0:0:",
+        "320,192,6806,1,0,0:0:0:0:",
+        "192,192,7220,1,0,0:0:0:0:",
+        "448,192,7220,1,0,0:0:0:0:",
+        "320,192,8048,1,0,0:0:0:0:"
     };
 
 
