@@ -7,6 +7,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     public GameObject note;
+    public GameObject rectanglePrefab;
     public float spawnWidth = 5f;
     public float xOffset, yOffset;
     public float noteSpeed = 5f;
@@ -101,11 +102,15 @@ public class ObjectSpawner : MonoBehaviour
                 MoveNote holdScript = holdEnd.GetComponent<MoveNote>();
                 holdScript.speed = noteSpeed;
                 holdScript.holdEnd = true;
+
+                GameObject rectangle = Instantiate(rectanglePrefab, transform);
+                MoveSliderBody rectScript = rectangle.GetComponent<MoveSliderBody>();
+                rectScript.speed = noteSpeed;
+
+                PositionRectangleBetweenPoints(newNote.transform, holdPos, rectangle);
             }
         }
     }
-
-
 
     float MapPosition(float originalPosition, float targetMax)
     {
@@ -115,6 +120,30 @@ public class ObjectSpawner : MonoBehaviour
 
         return (originalPosition - originalMin) / (originalMax - originalMin) * (targetMax - targetMin) + targetMin;
     }
+
+    void PositionRectangleBetweenPoints(Transform startTransform, Vector3 endPos, GameObject rectangle)
+    {
+        Vector3 centerPos = (startTransform.position + endPos) / 2f;
+        rectangle.transform.position = centerPos;
+
+        float scaleX = Vector3.Distance(startTransform.position, endPos) / rectangle.transform.localScale.y;
+        rectangle.transform.localScale = new Vector3(scaleX, rectangle.transform.localScale.y * .8f, rectangle.transform.localScale.z);
+
+        float angle = Mathf.Atan2(endPos.y - startTransform.position.y, endPos.x - startTransform.position.x) * Mathf.Rad2Deg;
+        rectangle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green; // Set the color of the Gizmos
