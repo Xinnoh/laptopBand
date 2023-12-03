@@ -38,7 +38,7 @@ public class TrumpetControl : MonoBehaviour
 
 
     // Draw Gizmos in the Editor to show the range
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(-targetMax + xOffset, transform.position.y + yOffset, transform.position.z),

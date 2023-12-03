@@ -8,6 +8,7 @@ public class MoveNote : MonoBehaviour
     public float speed;  // Speed of the note
     public bool played = false; // Flag to indicate if the note is played
 
+
     private void Update()
     {
         if (!played)
@@ -16,19 +17,26 @@ public class MoveNote : MonoBehaviour
             transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
     }
-
-    public void PlayNote()
+    public void PlayNote(bool isHit)
     {
         if (!played)
         {
-            // Play the audio if available
-            AudioSource audioSource = GetComponent<AudioSource>();
-            if (audioSource != null)
+            // If the note is hit, play the audio and particle effect
+            if (isHit)
             {
-                audioSource.Play();
+                AudioSource audioSource = GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
+                if (noteParticleSystem != null)
+                {
+                    noteParticleSystem.Play();
+                }
             }
 
-            // Disable the collider if available
+            // Disable the collider
             Collider2D collider = GetComponent<Collider2D>();
             if (collider != null)
             {
@@ -45,12 +53,6 @@ public class MoveNote : MonoBehaviour
                 }
             }
 
-            // Play the particle system if available
-            if (noteParticleSystem != null)
-            {
-                noteParticleSystem.Play();
-            }
-
             // Mark as played and stop movement
             played = true;
 
@@ -58,4 +60,5 @@ public class MoveNote : MonoBehaviour
             Destroy(gameObject, 3f);
         }
     }
+
 }

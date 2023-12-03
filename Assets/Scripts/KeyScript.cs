@@ -85,7 +85,7 @@ public class KeyScript : MonoBehaviour
                 MoveNote moveNoteScript = hitCollider.gameObject.GetComponent<MoveNote>();
                 if (moveNoteScript != null && !moveNoteScript.played)
                 {
-                    moveNoteScript.PlayNote();
+                    moveNoteScript.PlayNote(true);
                     Debug.Log(hitType + " hit!");
                     return true;
                 }
