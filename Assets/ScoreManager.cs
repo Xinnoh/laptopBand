@@ -15,10 +15,12 @@ public class ScoreManager : MonoBehaviour
     private int pianoScore, pianoMax;
     private int drumScore, drumMax;
     private int trumpetScore, trumpetMax;
+    private int overallScore, overallMax;
 
     public TextMeshProUGUI pianoScoreText; 
     public TextMeshProUGUI drumScoreText; 
     public TextMeshProUGUI trumpetScoreText;
+    public TextMeshProUGUI overallScoreText;
 
 
 
@@ -66,6 +68,8 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
 
+        UpdateOverallScore();
+
     }
 
     private void UpdateScoreDisplay(int totalScore, int totalPossiblePoints, TextMeshProUGUI scoreText)
@@ -73,5 +77,15 @@ public class ScoreManager : MonoBehaviour
         float scorePercentage = (float)totalScore / totalPossiblePoints * 100f;
         scoreText.text = $"{scorePercentage:F2}%";
     }
+
+
+    private void UpdateOverallScore()
+    {
+        overallScore = pianoScore + drumScore + trumpetScore;
+        overallMax = pianoMax + drumMax + trumpetMax;
+        float overallScorePercentage = (float)overallScore / overallMax * 100f;
+        overallScoreText.text = $"{overallScorePercentage:F2}%";
+    }
+
 }
 
