@@ -596,6 +596,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &62214596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1008,6 +1009,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &144343783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1252,6 +1254,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &176733242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1366,10 +1369,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleKey: 44
   detectWidth: 1
-  detectHeight: 1
+  detectHeight: 1.78
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
+  perfectDetectHeight: 0.63
   keyType: 1
 --- !u!212 &185261233
 SpriteRenderer:
@@ -1704,6 +1707,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &204160584
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2238,6 +2242,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &262543677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2716,6 +2721,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &294740571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2960,6 +2966,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &315523142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3288,6 +3295,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &339175537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3656,6 +3664,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &380489391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3990,6 +3999,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &416206476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4234,6 +4244,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &417303485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4562,6 +4573,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &432789109
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4974,6 +4986,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &486690956
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5255,6 +5268,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &496383134
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5369,10 +5383,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleKey: 44
   detectWidth: 1
-  detectHeight: 1
+  detectHeight: 1.78
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
+  perfectDetectHeight: 0.63
   keyType: 1
 --- !u!212 &513738821
 SpriteRenderer:
@@ -5559,7 +5573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7066bba752201a34890f35b660f06da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
+  note: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
   spawnWidth: 2.26
   xOffset: 5.5
   yOffset: -4.41
@@ -5757,6 +5771,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &558526388
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6085,6 +6100,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &583377768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6363,6 +6379,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &602689814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6607,6 +6624,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &607026481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6851,6 +6869,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &617257276
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7199,6 +7218,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &745999858
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7443,6 +7463,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &754165471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7687,6 +7708,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &768308163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8119,6 +8141,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &782996598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8363,6 +8386,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &799875971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8607,6 +8631,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &801563032
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8851,6 +8876,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &843928393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8947,7 +8973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7066bba752201a34890f35b660f06da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8281670053621249459, guid: 578900ccf5bc5f4458c72676d8edd96f, type: 3}
+  note: {fileID: 8281670053621249459, guid: 578900ccf5bc5f4458c72676d8edd96f, type: 3}
   spawnWidth: 2.26
   xOffset: 0
   yOffset: -4.41
@@ -9145,6 +9171,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &883530764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9473,6 +9500,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &910807731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9717,6 +9745,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &910973254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9961,6 +9990,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &919537480
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10397,6 +10427,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &980507092
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10778,7 +10809,6 @@ MonoBehaviour:
   piano: {fileID: 1189947176}
   drum: {fileID: 850320415}
   trumpet: {fileID: 556676416}
-  travelDistance: 6.17
 --- !u!1 &1021706078
 GameObject:
   m_ObjectHideFlags: 0
@@ -10956,6 +10986,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1021706082
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11790,7 +11821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7066bba752201a34890f35b660f06da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
+  note: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
   spawnWidth: 2.26
   xOffset: -5.5
   yOffset: -4.41
@@ -11973,6 +12004,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1194843332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12087,10 +12119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleKey: 44
   detectWidth: 1
-  detectHeight: 1
+  detectHeight: 1.78
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
+  perfectDetectHeight: 0.63
   keyType: 1
 --- !u!212 &1204989348
 SpriteRenderer:
@@ -12321,6 +12353,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1216954575
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12696,6 +12729,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1255793494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12940,6 +12974,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1301187094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13372,6 +13407,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1316503990
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13616,6 +13652,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1319885681
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13860,6 +13897,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1346348313
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14104,6 +14142,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1356702174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14586,6 +14625,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1414786428
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15018,6 +15058,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1459317484
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15470,6 +15511,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1480125869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15798,6 +15840,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1510678693
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15912,10 +15955,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleKey: 44
   detectWidth: 1
-  detectHeight: 1
+  detectHeight: 1.78
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
+  perfectDetectHeight: 0.63
   keyType: 1
 --- !u!212 &1513168327
 SpriteRenderer:
@@ -16146,6 +16189,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1545167118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16711,6 +16755,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1567157977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17453,6 +17498,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1633823240
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17781,6 +17827,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1673679465
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18242,6 +18289,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1733639532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18520,6 +18568,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1768879762
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18764,6 +18813,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1774011741
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19076,6 +19126,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1820067826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19320,6 +19371,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1821578238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19564,6 +19616,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1858332840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20048,6 +20101,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &1971555138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20460,6 +20514,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &2032000788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20704,6 +20759,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &2041338871
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21052,6 +21108,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &2080367375
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21464,6 +21521,7 @@ MonoBehaviour:
   noteParticleSystem: {fileID: 0}
   speed: 0
   played: 0
+  holdEnd: 0
 --- !u!212 &2112605292
 SpriteRenderer:
   m_ObjectHideFlags: 0

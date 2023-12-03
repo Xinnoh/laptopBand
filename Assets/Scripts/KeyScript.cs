@@ -32,6 +32,11 @@ public class KeyScript : MonoBehaviour
             CheckAndPlayNote();
         }
 
+        if (Input.GetKey(toggleKey))
+        {
+            CheckAndPlayHeldNotes();
+        }
+
         if (Input.GetKeyUp(toggleKey))
         {
             SetOpacity(0.5f); 
@@ -73,6 +78,32 @@ public class KeyScript : MonoBehaviour
     }
 
 
+    private void CheckAndPlayHeldNotes()
+    {
+
+        Vector2 size = new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2);
+        Vector2 boxCenter = (Vector2)transform.position + new Vector2(offsetX, offsetY);
+
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(boxCenter, size, 0);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Note"))
+            {
+                MoveNote moveNoteScript = hitCollider.gameObject.GetComponent<MoveNote>();
+                if (moveNoteScript != null && !moveNoteScript.played)
+                {
+                    if (moveNoteScript.holdEnd)
+                    {
+                        moveNoteScript.PlayNote(true);
+                        Debug.Log("Perfect" + " hit!");
+                    }
+                }
+            }
+        }
+    }
+
+
     private bool CheckHit(Vector2 size, string hitType, Vector2 additionalOffset = default)
     {
         Vector2 boxCenter = (Vector2)transform.position + new Vector2(offsetX, offsetY) + additionalOffset;
@@ -93,6 +124,11 @@ public class KeyScript : MonoBehaviour
         }
         return false;
     }
+
+
+
+
+
     private void OnDrawGizmosSelected()
     {
         // Central 'Perfect' hit detection area

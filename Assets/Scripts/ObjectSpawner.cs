@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject note;
     public float spawnWidth = 5f;
     public float xOffset, yOffset;
     public float noteSpeed = 5f;
@@ -72,60 +73,42 @@ public class ObjectSpawner : MonoBehaviour
                 lastSpawnTime = spawnTime;
             }
 
-            GameObject newNote = Instantiate(prefab, startPos, Quaternion.identity);
+            float objectType = float.Parse(parts[3]);
+
+            //Normal Notes
+
+            GameObject newNote = Instantiate(note, startPos, Quaternion.identity);
             MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
             moveNoteScript.speed = noteSpeed;
+            
 
-            // Check if there is an audio file name, load it
-            if (parts.Length > 6 && !string.IsNullOrEmpty(parts[6].Trim()))
+            //Long notes ending
+            if (objectType == 128)
             {
-                string audioFileName = parts[6].Trim();
-                string filename = Path.GetFileNameWithoutExtension(audioFileName);
+                string lastSection = parts.Last();
+                string[] subParts = lastSection.Split(':');
+                float endTime = float.Parse(subParts[0]);
+                float holdLength = (endTime - spawnTime) / 1000f;
 
-                AudioClip clip = Resources.Load<AudioClip>(filename);
-                AudioSource audioSource = newNote.GetComponent<AudioSource>();
 
-                if (audioSource != null && clip != null)
-                {
-                    audioSource.clip = clip;
-                }
+                // I need to calculate how far down the startPos of the holdend should be. The higher the holdLength or noteSpeed, the further the distance.
+                float distance = holdLength * noteSpeed * .583f;
+                Vector3 holdPos = new Vector3(xPosition + xOffset, yOffset - distance, 0);
+
+
+                GameObject holdEnd = Instantiate(note, holdPos, Quaternion.identity);
+
+                MoveNote holdScript = holdEnd.GetComponent<MoveNote>();
+                holdScript.speed = noteSpeed;
+                holdScript.holdEnd = true;
             }
-
-            //Piano
-            if(gamemode == 0)
-            {
-
-            }
-
-            //Drum
-            else if(gamemode == 1)
-            {
-
-            }
-
-            //Trumpet
-            else
-            {
-
-            }
-
-
-
-
-
-
-
-
-
         }
     }
 
+
+
     float MapPosition(float originalPosition, float targetMax)
     {
-        /* Takes the osu note position (0-512) and maps it to a value between -X and X
-            If targetMax = 5, 512 = 5 and 0 = -5
-        */
-
         const float originalMin = 0f;
         const float originalMax = 512f;
         float targetMin = -targetMax;
@@ -196,7 +179,7 @@ public class ObjectSpawner : MonoBehaviour
 
 
     private List<string> drumLines = new List<string>{
-
+        "100,192,600,128,0,1427:0:0:0:0:",
         "448,192,600,1,0,0:0:0:0:",
         "192,192,600,1,0,0:0:0:0:",
         "320,192,1427,1,0,0:0:0:0:",

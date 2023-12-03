@@ -6,8 +6,7 @@ public class MoveNote : MonoBehaviour
     public ParticleSystem noteParticleSystem; // Reference to the particle system
 
     public float speed;  // Speed of the note
-    public bool played = false; // Flag to indicate if the note is played
-
+    public bool played, holdEnd; 
 
     private void Update()
     {

@@ -5,25 +5,21 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-
     public int gameState = 0;
-
-    public int songDiff = 1;
-
+    public int songDiff = 1;    // which difficulty was selected
 
     public ObjectSpawner piano;
     public ObjectSpawner drum;
     public ObjectSpawner trumpet;
 
-    private float pianoDelay, drumDelay, trumpetDelay, songDelay, songOffset;
-
-    private AudioSource audioSource;
-
-    private FileInfo[] files = null;
-    private List<string> dataLines = new List<string> { };
+    private float pianoDelay, drumDelay, trumpetDelay;
+    private float songBPM, songDelay, songOffset;
+    private float travelDistance = 6.17f;
 
     private string audioFileName;
-    public float travelDistance = 6.17f; // Distance to travel
+    private FileInfo[] files = null;
+    private List<string> dataLines = new List<string> { };
+    private AudioSource audioSource;
 
     private FileInfo[] GetResourceFiles(string searchPattern)
     {
