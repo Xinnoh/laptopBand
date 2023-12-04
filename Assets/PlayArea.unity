@@ -12087,6 +12087,9 @@ MonoBehaviour:
   drumScoreText: {fileID: 1070620433}
   trumpetScoreText: {fileID: 1064580779}
   overallScoreText: {fileID: 1370243021}
+  piano: {fileID: 1189947177}
+  drum: {fileID: 850320417}
+  trumpet: {fileID: 556676418}
 --- !u!4 &1143798968
 Transform:
   m_ObjectHideFlags: 0

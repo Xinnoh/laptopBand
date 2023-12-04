@@ -22,6 +22,10 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI trumpetScoreText;
     public TextMeshProUGUI overallScoreText;
 
+    public AudioSource piano, drum, trumpet;
+    private float pianoVolume, drumVolume, trumpetVolume;
+
+
     void Awake()
     {
         // No idea what this does but it doesn't work without it
@@ -55,7 +59,7 @@ public class ScoreManager : MonoBehaviour
                 if (hitType == "Perfect") pianoPerfects++;
                 else if (hitType == "Great") pianoGreats++;
                 else if (hitType == "Miss") pianoMisses++;
-                UpdateScoreDisplay(pianoScore, pianoMax, pianoScoreText);
+                AdjustVolume(hitType, ref piano, ref pianoVolume);
                 break;
             case 1:
                 drumScore += points;
@@ -63,7 +67,7 @@ public class ScoreManager : MonoBehaviour
                 if (hitType == "Perfect") drumPerfects++;
                 else if (hitType == "Great") drumGreats++;
                 else if (hitType == "Miss") drumMisses++;
-                UpdateScoreDisplay(drumScore, drumMax, drumScoreText);
+                AdjustVolume(hitType, ref drum, ref drumVolume);
                 break;
             case 2:
                 trumpetScore += points;
@@ -71,12 +75,30 @@ public class ScoreManager : MonoBehaviour
                 if (hitType == "Perfect") trumpetPerfects++;
                 else if (hitType == "Great") trumpetGreats++;
                 else if (hitType == "Miss") trumpetMisses++;
+                AdjustVolume(hitType, ref trumpet, ref trumpetVolume);
                 UpdateScoreDisplay(trumpetScore, trumpetMax, trumpetScoreText);
                 break;
         }
 
         UpdateOverallScore();
 
+    }
+
+    private void AdjustVolume(string hitType, ref AudioSource audioSource, ref float volumeLevel)
+    {
+        switch (hitType)
+        {
+            case "Perfect":
+                volumeLevel = 1f;
+                break;
+            case "Great":
+                volumeLevel = Mathf.Min(volumeLevel + 0.3f, 1f); // Ensure volume doesn't exceed 1
+                break;
+            case "Miss":
+                volumeLevel = 0f;
+                break;
+        }
+        audioSource.volume = volumeLevel;
     }
 
     private void UpdateScoreDisplay(int totalScore, int totalPossiblePoints, TextMeshProUGUI scoreText)
