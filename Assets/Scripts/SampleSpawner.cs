@@ -7,17 +7,23 @@ using UnityEngine.SceneManagement;
 
 public class SampleSpawner : MonoBehaviour
 {
+    //Variable
     public float pSpeed, dSpeed, tSpeed;
     public int difficulty;
-    public float spawnInterval;
+    public TextMeshProUGUI pText, dText, tText;
+    private float timer;
 
+    //Unchanging
+    public float spawnInterval, variationRange;
     public Vector2 spawnPosition;
     public float spawnWidth = 1f;
     public GameObject pianoPrefab, drumPrefab, thirdPrefab;
-    public TextMeshProUGUI pText, dText, tText;
 
-    private float timer;
 
+    private void Start()
+    {
+        ResetVariables();
+    }
 
     void Update()
     {
@@ -28,10 +34,13 @@ public class SampleSpawner : MonoBehaviour
             // Reset timer
             timer = 0;
 
-            // Spawn prefabs
-            SpawnPrefab(pianoPrefab, pSpeed, -spawnWidth, 0);
-            SpawnPrefab(drumPrefab, dSpeed, 0, 1);
-            SpawnPrefab(pianoPrefab, tSpeed, spawnWidth, 2);   //trumpet
+            float pianoOffset = Random.Range(-variationRange, variationRange);
+            float drumOffset = Random.Range(-variationRange, variationRange);
+            float trumpetOffset = Random.Range(-variationRange, variationRange);
+
+            SpawnPrefab(pianoPrefab, pSpeed, -spawnWidth + pianoOffset, 0);
+            SpawnPrefab(drumPrefab, dSpeed, drumOffset, 1); 
+            SpawnPrefab(pianoPrefab, tSpeed, spawnWidth + trumpetOffset, 2); 
         }
     }
 
@@ -44,27 +53,10 @@ public class SampleSpawner : MonoBehaviour
         moveNoteScript.gamemode = gamemode;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        DrawSpawnPoint(0); // Center
-        Gizmos.color = Color.green;
-        DrawSpawnPoint(spawnWidth); // Right
-        Gizmos.color = Color.blue;
-        DrawSpawnPoint(-spawnWidth); // Left
-    }
-
-    void DrawSpawnPoint(float xOffset)
-    {
-        Vector3 position = new Vector3(spawnPosition.x + xOffset, spawnPosition.y, 0);
-        Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
-
-        Gizmos.DrawCube(position, size); 
-    }
 
     public void AdjustSpeed(ref float speed, float amount)
     {
-        speed = Mathf.Clamp(speed + amount, 1, 10);
+        speed = Mathf.Clamp(speed + amount, 1, 12);
         pText.text = $"{pSpeed:F1}";
         dText.text = $"{dSpeed:F1}";
         tText.text = $"{tSpeed:F1}";
@@ -124,4 +116,48 @@ public class SampleSpawner : MonoBehaviour
 
     }
 
+    void ResetVariables()
+    {
+        pSpeed = GameData.pSpeed;
+        dSpeed = GameData.dSpeed;
+        tSpeed = GameData.tSpeed;
+        difficulty = GameData.difficulty;
+        pText.text = $"{pSpeed:F1}";
+        dText.text = $"{dSpeed:F1}";
+        tText.text = $"{tSpeed:F1}";
+        timer = 0f;
+    }
+
+
+
+    void OnDrawGizmosSelected()
+    {
+        // Drawing fixed spawn points
+        DrawSpawnPoint(0, Color.red); // Center
+        DrawSpawnPoint(spawnWidth, Color.green); // Right
+        DrawSpawnPoint(-spawnWidth, Color.blue); // Left
+
+        // Drawing variation ranges
+        DrawVariationRange(0, Color.red); // Center variation
+        DrawVariationRange(spawnWidth, Color.green); // Right variation
+        DrawVariationRange(-spawnWidth, Color.blue); // Left variation
+    }
+
+    void DrawSpawnPoint(float xOffset, Color color)
+    {
+        Gizmos.color = color;
+        Vector3 position = new Vector3(spawnPosition.x + xOffset, spawnPosition.y, 0);
+        Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
+        Gizmos.DrawCube(position, size);
+    }
+
+    void DrawVariationRange(float xOffset, Color color)
+    {
+        Gizmos.color = new Color(color.r, color.g, color.b, 0.4f); // Slightly transparent
+        Vector3 leftBound = new Vector3(spawnPosition.x + xOffset - variationRange, spawnPosition.y, 0);
+        Vector3 rightBound = new Vector3(spawnPosition.x + xOffset + variationRange, spawnPosition.y, 0);
+        Vector3 size = new Vector3(0.1f, 0.3f, 0.43f); // Thin and tall to represent range
+
+        Gizmos.DrawLine(leftBound, rightBound);
+    }
 }

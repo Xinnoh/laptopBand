@@ -778,7 +778,7 @@ Transform:
   m_GameObject: {fileID: 417892760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.63, y: -1.286, z: 0}
+  m_LocalPosition: {x: 1.75, y: -1.286, z: 0}
   m_LocalScale: {x: 0.099999994, y: 6.511682, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2579,7 +2579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2915,7 +2915,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.71383643, g: 0.7587517, b: 1, a: 1}
   m_FlipX: 0
@@ -3250,7 +3250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.32704395, g: 0.32704395, b: 0.32704395, a: 1}
   m_FlipX: 0
@@ -3657,7 +3657,7 @@ GameObject:
   - component: {fileID: 1597917458}
   - component: {fileID: 1597917457}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3679,15 +3679,16 @@ MonoBehaviour:
   dSpeed: 5
   tSpeed: 5
   difficulty: 5
-  spawnInterval: 0.7
-  spawnPosition: {x: 3.22, y: -4.03}
-  spawnWidth: 3.43
-  pianoPrefab: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
-  drumPrefab: {fileID: 8281670053621249459, guid: 578900ccf5bc5f4458c72676d8edd96f, type: 3}
-  thirdPrefab: {fileID: 0}
   pText: {fileID: 707811626}
   dText: {fileID: 621094226}
   tText: {fileID: 1173140541}
+  spawnInterval: 0.7
+  variationRange: 1.08
+  spawnPosition: {x: 3.32, y: -4.03}
+  spawnWidth: 3.19
+  pianoPrefab: {fileID: 8281670053621249459, guid: 21477f9490268c34daff718785a6890b, type: 3}
+  drumPrefab: {fileID: 8281670053621249459, guid: 578900ccf5bc5f4458c72676d8edd96f, type: 3}
+  thirdPrefab: {fileID: 0}
 --- !u!4 &1597917458
 Transform:
   m_ObjectHideFlags: 0

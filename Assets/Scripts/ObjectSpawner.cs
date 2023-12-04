@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static TMPro.Examples.TMP_ExampleScript_01;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ObjectSpawner : MonoBehaviour
 {
@@ -11,9 +15,12 @@ public class ObjectSpawner : MonoBehaviour
     public float spawnWidth = 5f;
     public float xOffset, yOffset;
     public float noteSpeed = 5f;
+    private float timer;
 
-    public bool complete;
+    public bool spawning, complete;
     public int gamemode, difficulty;
+
+    private float lastSpawnTime;
 
     private FileInfo[] files = null;
 
@@ -22,15 +29,25 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
+        timer = 0;
         difficulty = GameData.difficulty;
         SetNoteSpeed();
         loadObjects();
         complete = false;
     }
 
+    private void Update()
+    {
+        if (spawning)
+        {
+            timer += Time.deltaTime;
+        }
+    }
+
 
     public void startSpawning(float delay)
     {
+        spawning = true;
         StartCoroutine(SpawnObjects(delay));
     }
 
@@ -42,6 +59,7 @@ public class ObjectSpawner : MonoBehaviour
         FileInfo[] files = dirInfo.GetFiles(searchPattern);
         return files;
     }
+
 
     IEnumerator SpawnObjects(float delay)
     {
@@ -57,7 +75,32 @@ public class ObjectSpawner : MonoBehaviour
             Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
 
             //Find time difference between current and next note
+
             float spawnTime = float.Parse(parts[2]) / 1000.0f;
+
+            Debug.Log("Diff: "+ (timer - spawnTime));
+
+            // Check if the coroutine is behind schedule
+            if (timer > spawnTime)
+            {
+                // Calculate how much the coroutine is behind
+                float delayAdjustment = timer - spawnTime;
+
+                // Adjust the wait time to try and catch up
+                float adjustedWaitTime = spawnTime - lastSpawnTime - delayAdjustment;
+
+                // Ensure the wait time is not negative
+                adjustedWaitTime = Mathf.Max(0, adjustedWaitTime);
+
+                yield return new WaitForSeconds(adjustedWaitTime);
+            }
+            else
+            {
+                yield return new WaitForSeconds(spawnTime - lastSpawnTime);
+            }
+
+            lastSpawnTime = spawnTime;
+
             if (spawnTime > lastSpawnTime)
             {
                 yield return new WaitForSeconds(spawnTime - lastSpawnTime);
@@ -71,8 +114,8 @@ public class ObjectSpawner : MonoBehaviour
             GameObject newNote = Instantiate(note, startPos, Quaternion.identity);
             MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
             moveNoteScript.speed = noteSpeed;
-            
-            if(gamemode == 2)
+
+            if (gamemode == 2)
             {
                 moveNoteScript.holdEnd = true;
             }
@@ -84,9 +127,6 @@ public class ObjectSpawner : MonoBehaviour
                 string[] subParts = lastSection.Split(':');
                 float endTime = float.Parse(subParts[0]) / 1000f;
                 float holdLength = (endTime - spawnTime);
-
-                Debug.Log("Duration: " + (endTime - spawnTime));
-                Debug.Log("Length: " + holdLength);
 
 
                 // I need to calculate how far down the startPos of the holdend should be. The higher the holdLength or noteSpeed, the further the distance.
@@ -104,10 +144,12 @@ public class ObjectSpawner : MonoBehaviour
                 MoveSliderBody rectScript = rectangle.GetComponent<MoveSliderBody>();
                 rectScript.speed = noteSpeed;
 
-                PositionRectangleBetweenPoints(newNote.transform, holdPos, rectangle);
+
+                PositionRectangleBetweenPoints(startPos, holdPos, rectangle);
             }
         }
         complete = true;
+        spawning = false;
     }
 
     float MapPosition(float originalPosition, float targetMax)
@@ -121,16 +163,16 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     // Hold note body
-    void PositionRectangleBetweenPoints(Transform startTransform, Vector3 endPos, GameObject rectangle)
+    void PositionRectangleBetweenPoints(Vector3 startTransform, Vector3 endPos, GameObject rectangle)
     {
-        Vector3 centerPos = (startTransform.position + endPos) / 2f;
+        Vector3 centerPos = (startTransform + endPos) / 2f;
         rectangle.transform.position = centerPos;
 
 
-        float scaleX = Vector3.Distance(startTransform.position, endPos) / rectangle.transform.localScale.y;
+        float scaleX = Vector3.Distance(startTransform, endPos) / rectangle.transform.localScale.y;
         rectangle.transform.localScale = new Vector3(scaleX, rectangle.transform.localScale.y * .8f, rectangle.transform.localScale.z);
 
-        float angle = Mathf.Atan2(endPos.y - startTransform.position.y, endPos.x - startTransform.position.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(endPos.y - startTransform.y, endPos.x - startTransform.x) * Mathf.Rad2Deg;
         rectangle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
