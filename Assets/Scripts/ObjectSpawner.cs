@@ -12,30 +12,18 @@ public class ObjectSpawner : MonoBehaviour
     public float xOffset, yOffset;
     public float noteSpeed = 5f;
 
-    public int gamemode;
+    public int gamemode, difficulty;
 
     private FileInfo[] files = null;
 
     private List<string> dataLines = new List<string> { };
 
-    void Start()
+
+    IEnumerator Start()
     {
-
-        if(gamemode== 0)
-        {
-            dataLines = pianoLines;
-        }
-        else if(gamemode == 1)
-        {
-            dataLines = drumLines;
-        }
-        else if(gamemode == 2)
-        {
-            dataLines = trumpetLines;
-        }
-
-        // Load all wav files
-        files = GetResourceFiles("*.wav");
+        // Have to wait for gamestate to tell us what difficulty to load
+        yield return new WaitForSeconds(.1f);
+        loadObjects();
     }
 
 
@@ -135,12 +123,51 @@ public class ObjectSpawner : MonoBehaviour
 
 
 
+    void loadObjects()
+    {
 
+        string mode = "";
+        switch (gamemode)
+        {
+            case 0: mode = "Piano"; break;
+            case 1: mode = "Drums"; break;
+            case 2: mode = "Sax"; break;
+            default: Debug.LogError("Invalid game mode: " + gamemode); return;
+        }
 
+        string difficultyLevel = "";
+        switch (difficulty)
+        {
+            case 0: difficultyLevel = "Tut"; break;
+            case 1: difficultyLevel = "Easy"; break;
+            case 2: difficultyLevel = "Normal"; break;
+            case 3: difficultyLevel = "Hard"; break;
+            default: Debug.LogError("Invalid difficulty: " + difficulty); return;
+        }
 
+        string key = mode + difficultyLevel;
+        switch (key)
+        {
+            case "PianoTut": dataLines = GameData.PianoTut; break;
+            case "PianoEasy": dataLines = GameData.PianoEasy; break;
+            case "PianoNormal": dataLines = GameData.PianoNormal; break;
+            case "PianoHard": dataLines = GameData.PianoHard; break;
 
+            case "DrumsTut": dataLines = GameData.DrumsTut; break;
+            case "DrumsEasy": dataLines = GameData.DrumsEasy; break;
+            case "DrumsNormal": dataLines = GameData.DrumsNormal; break;
+            case "DrumsHard": dataLines = GameData.DrumsHard; break;
 
+            case "SaxTut": dataLines = GameData.SaxTut; break;
+            case "SaxEasy": dataLines = GameData.SaxEasy; break;
+            case "SaxNormal": dataLines = GameData.SaxNormal; break;
+            case "SaxHard": dataLines = GameData.SaxHard; break;
+            default: Debug.LogError("No data found for combination: " + key); return;
+        }
 
+        // Load all wav files
+        files = GetResourceFiles("*.wav");
+    }
 
 
 
@@ -153,7 +180,7 @@ public class ObjectSpawner : MonoBehaviour
 
             Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
 
-            foreach (string line in pianoLines)
+            foreach (string line in dataLines)
             {
                 var parts = line.Split(',');
                 float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
@@ -168,7 +195,7 @@ public class ObjectSpawner : MonoBehaviour
             Gizmos.color = Color.red;
             Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
 
-            foreach (string line in drumLines)
+            foreach (string line in dataLines)
             {
                 var parts = line.Split(',');
                 float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
@@ -182,7 +209,7 @@ public class ObjectSpawner : MonoBehaviour
             Gizmos.color = Color.blue;
             Vector3 size = new Vector3(0.45f, 0.16f, 0.43f);
 
-            foreach (string line in trumpetLines)
+            foreach (string line in dataLines)
             {
                 var parts = line.Split(',');
                 float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
@@ -191,49 +218,4 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
     }
-
-
-
-
-    private List<string> pianoLines = new List<string>{
-        "0,192,252,5,0,0:0:0:0:,D8",
-        "512,192,735,1,0,0:0:0:0:,C5",
-        "256,192,1219,1,0,0:0:0:0:,G3",
-        "376,192,1703,1,0,0:0:0:0:",
-        "160,192,1945,1,0,0:0:0:0:",
-        "328,192,2187,1,0,0:0:0:0:",
-        "56,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
-    };
-
-
-    private List<string> drumLines = new List<string>{
-        "100,192,600,128,0,1427:0:0:0:0:",
-        "448,192,600,1,0,0:0:0:0:",
-        "192,192,600,1,0,0:0:0:0:",
-        "320,192,1427,1,0,0:0:0:0:",
-        "192,192,2668,1,0,0:0:0:0:",
-        "320,192,3082,1,0,0:0:0:0:",
-        "192,192,3496,1,0,0:0:0:0:",
-        "192,192,3910,1,0,0:0:0:0:",
-        "320,192,4737,1,0,0:0:0:0:",
-        "192,192,5565,1,0,0:0:0:0:",
-        "320,192,6393,1,0,0:0:0:0:",
-        "320,192,6806,1,0,0:0:0:0:",
-        "192,192,7220,1,0,0:0:0:0:",
-        "448,192,7220,1,0,0:0:0:0:",
-        "320,192,8048,1,0,0:0:0:0:"
-    };
-
-
-    private List<string> trumpetLines = new List<string>{
-        "0,192,252,5,0,0:0:0:0:,D8",
-        "512,192,735,1,0,0:0:0:0:,C5",
-        "256,192,1219,1,0,0:0:0:0:,G3",
-        "376,192,1703,1,0,0:0:0:0:",
-        "160,192,1945,1,0,0:0:0:0:",
-        "328,192,2187,1,0,0:0:0:0:",
-        "56,192,2429,1,0,0:0:0:0:",
-        "448,192,2671,1,0,0:0:0:0:"
-    };
 }

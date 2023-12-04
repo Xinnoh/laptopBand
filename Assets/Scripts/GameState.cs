@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
@@ -8,51 +9,39 @@ public class GameState : MonoBehaviour
     public int gameState = 0;
     public int songDiff = 1;    // which difficulty was selected
 
-    public ObjectSpawner piano;
-    public ObjectSpawner drum;
-    public ObjectSpawner trumpet;
+    public ObjectSpawner piano, drum, trumpet;
+    public AudioSource instSource, pianoSound, drumSound, trumpetSound;
 
     private float pianoDelay, drumDelay, trumpetDelay;
     private float songBPM, songDelay, songOffset;
     private float travelDistance = 6.17f;
 
     private string audioFileName;
+    private string pianoFile, drumFile, trumpetFile, instFile;
     private FileInfo[] files = null;
     private List<string> dataLines = new List<string> { };
-    private AudioSource audioSource;
-
-    private FileInfo[] GetResourceFiles(string searchPattern)
-    {
-        DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath + "\\Resources");
-        FileInfo[] files = dirInfo.GetFiles(searchPattern);
-        return files;
-    }
+    
 
     private void Start()
     {
 
+        piano.difficulty = songDiff;
+        drum.difficulty = songDiff;
+        trumpet.difficulty = songDiff;
+
         // Load all wav files
-        files = GetResourceFiles("*.wav");
+        files = GetResourceFiles("*.wav", "*.ogg");
 
+        string[] filePrefixes = { "tut", "easy", "normal", "hard" };
+        string[] fileTypes = { "Piano", "Drums", "Sax", "Inst" };
 
-        if (songDiff == 0)
+        if (songDiff >= 0 && songDiff < filePrefixes.Length)
         {
-
-        }
-
-        else if(songDiff == 1)
-        {
-            audioFileName = "easy_underfellSans";
-            songOffset = 0; //should be 0.615f for this song
-        }
-        
-        else if(songDiff == 2)
-        {
-
-        }
-
-        else if (songDiff == 3)
-        {
+            string prefix = filePrefixes[songDiff];
+            LoadAndPlay(prefix + fileTypes[0], pianoSound);
+            LoadAndPlay(prefix + fileTypes[1], drumSound);
+            LoadAndPlay(prefix + fileTypes[2], trumpetSound);
+            LoadAndPlay(prefix + fileTypes[3], instSource);
 
         }
         else
@@ -60,22 +49,6 @@ public class GameState : MonoBehaviour
             Debug.Log("no song loaded: " + songDiff);
         }
 
-        string filename = Path.GetFileNameWithoutExtension(audioFileName);
-        AudioClip clip = Resources.Load<AudioClip>(filename); 
-        Debug.Log("Attempting to load: " + filename);
-
-        audioSource = GetComponent<AudioSource>();
-
-        if (audioSource != null && clip != null)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-            audioSource.Pause();
-        }
-        else
-        {
-            Debug.LogError("Audio clip or AudioSource is null. Clip: " + (clip != null) + ", AudioSource: " + (audioSource != null));
-        }
 
         pianoDelay = CalculateTimeToTravel(travelDistance, piano.noteSpeed);
         drumDelay = CalculateTimeToTravel(travelDistance, drum.noteSpeed);
@@ -87,6 +60,25 @@ public class GameState : MonoBehaviour
         drumDelay = maxDelay - drumDelay;
         trumpetDelay = maxDelay - trumpetDelay;
         songDelay = maxDelay + songOffset;
+    }
+
+
+    void LoadAndPlay(string fileName, AudioSource audioSource)
+    {
+        string filename = Path.GetFileNameWithoutExtension(fileName);
+        AudioClip clip = Resources.Load<AudioClip>(filename);
+        Debug.Log("Attempting to load: " + filename);
+
+        if (audioSource != null && clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+            audioSource.Pause();
+        }
+        else
+        {
+            Debug.LogError("Audio clip or AudioSource is null. Clip: " + (clip != null) + ", AudioSource: " + (audioSource != null));
+        }
     }
 
     private float CalculateTimeToTravel(float distance, float speed)
@@ -117,14 +109,20 @@ public class GameState : MonoBehaviour
 
         Debug.Log("Delay");
 
-        audioSource.UnPause();
+        instSource.UnPause();
+        pianoSound.UnPause();
+        drumSound.UnPause();
+        trumpetSound.UnPause();
     }
-
-
-
-    // Update is called once per frame
-    void Update()
+    private FileInfo[] GetResourceFiles(string searchPatternWav, string searchPatternOgg)
     {
-        
+        DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath + "\\Resources");
+        FileInfo[] wavFiles = dirInfo.GetFiles(searchPatternWav);
+        FileInfo[] oggFiles = dirInfo.GetFiles(searchPatternOgg);
+
+        // Combine wav and ogg files into a single array
+        FileInfo[] allFiles = wavFiles.Concat(oggFiles).ToArray();
+        return allFiles;
     }
+
 }
