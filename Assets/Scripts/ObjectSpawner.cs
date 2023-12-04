@@ -82,12 +82,15 @@ public class ObjectSpawner : MonoBehaviour
             {
                 string lastSection = parts.Last();
                 string[] subParts = lastSection.Split(':');
-                float endTime = float.Parse(subParts[0]);
-                float holdLength = (endTime - spawnTime) / 1000f;
+                float endTime = float.Parse(subParts[0]) / 1000f;
+                float holdLength = (endTime - spawnTime);
+
+                Debug.Log("Duration: " + (endTime - spawnTime));
+                Debug.Log("Length: " + holdLength);
 
 
                 // I need to calculate how far down the startPos of the holdend should be. The higher the holdLength or noteSpeed, the further the distance.
-                float distance = holdLength * noteSpeed * .583f;
+                float distance = holdLength * noteSpeed;
                 Vector3 holdPos = new Vector3(xPosition + xOffset, yOffset - distance, 0);
 
 
@@ -122,6 +125,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         Vector3 centerPos = (startTransform.position + endPos) / 2f;
         rectangle.transform.position = centerPos;
+
 
         float scaleX = Vector3.Distance(startTransform.position, endPos) / rectangle.transform.localScale.y;
         rectangle.transform.localScale = new Vector3(scaleX, rectangle.transform.localScale.y * .8f, rectangle.transform.localScale.z);

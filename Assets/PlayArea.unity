@@ -5594,6 +5594,7 @@ MonoBehaviour:
   xOffset: 5.5
   yOffset: -4.41
   noteSpeed: 4
+  complete: 0
   gamemode: 2
   difficulty: 0
 --- !u!4 &556676417
@@ -9105,6 +9106,7 @@ MonoBehaviour:
   xOffset: 0
   yOffset: -4.41
   noteSpeed: 10
+  complete: 0
   gamemode: 1
   difficulty: 0
 --- !u!4 &850320416
@@ -11035,7 +11037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  songDiff: 1
+  songDiff: 2
   piano: {fileID: 1189947176}
   drum: {fileID: 850320415}
   trumpet: {fileID: 556676416}
@@ -12063,6 +12065,7 @@ MonoBehaviour:
   xOffset: -5.5
   yOffset: -4.41
   noteSpeed: 4.5
+  complete: 0
   gamemode: 0
   difficulty: 0
 --- !u!82 &1189947177
