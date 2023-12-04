@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SampleSpawner : MonoBehaviour
 {
     public float pSpeed, dSpeed, tSpeed;
+    public int difficulty;
     public float spawnInterval;
 
     public Vector2 spawnPosition;
@@ -101,7 +103,25 @@ public class SampleSpawner : MonoBehaviour
         }
     }
 
+    public void changeDiff(int diff)
+    {
+        difficulty = diff;
+    }
 
+    public void startGame()
+    {
+        if(difficulty > 3 || difficulty < 0)
+        {
+            Debug.Log("No difficulty selected");
+            return;
+        }
 
+        GameData.pSpeed = pSpeed;
+        GameData.dSpeed = dSpeed;
+        GameData.tSpeed = tSpeed;
+        GameData.difficulty = difficulty;
+        SceneManager.LoadScene(2);
+
+    }
 
 }

@@ -24,10 +24,12 @@ public class GameState : MonoBehaviour
 
     private void Start()
     {
+        songDiff = GameData.difficulty;
 
-        piano.difficulty = songDiff;
-        drum.difficulty = songDiff;
-        trumpet.difficulty = songDiff;
+        piano.noteSpeed = GameData.pSpeed;
+        drum.noteSpeed = GameData.dSpeed;
+        trumpet.noteSpeed = GameData.tSpeed;
+
 
         // Load all wav files
         files = GetResourceFiles("*.wav", "*.ogg");

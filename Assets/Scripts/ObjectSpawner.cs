@@ -19,10 +19,10 @@ public class ObjectSpawner : MonoBehaviour
     private List<string> dataLines = new List<string> { };
 
 
-    IEnumerator Start()
+    void Start()
     {
-        // Have to wait for gamestate to tell us what difficulty to load
-        yield return new WaitForSeconds(.1f);
+        difficulty = GameData.difficulty;
+        SetNoteSpeed();
         loadObjects();
     }
 
@@ -70,6 +70,10 @@ public class ObjectSpawner : MonoBehaviour
             MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
             moveNoteScript.speed = noteSpeed;
             
+            if(gamemode == 2)
+            {
+                moveNoteScript.holdEnd = true;
+            }
 
             //Long notes ending
             if (objectType == 128)
@@ -102,6 +106,7 @@ public class ObjectSpawner : MonoBehaviour
 
     float MapPosition(float originalPosition, float targetMax)
     {
+        // Maps relative value. Eg 512 becomes 1, 256 becomes 0.5
         const float originalMin = 0f;
         const float originalMax = 512f;
         float targetMin = -targetMax;
@@ -109,6 +114,7 @@ public class ObjectSpawner : MonoBehaviour
         return (originalPosition - originalMin) / (originalMax - originalMin) * (targetMax - targetMin) + targetMin;
     }
 
+    // Hold note body
     void PositionRectangleBetweenPoints(Transform startTransform, Vector3 endPos, GameObject rectangle)
     {
         Vector3 centerPos = (startTransform.position + endPos) / 2f;
@@ -120,6 +126,28 @@ public class ObjectSpawner : MonoBehaviour
         float angle = Mathf.Atan2(endPos.y - startTransform.position.y, endPos.x - startTransform.position.x) * Mathf.Rad2Deg;
         rectangle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
+
+
+    void SetNoteSpeed()
+    {
+        switch (gamemode)
+        {
+            case 0:
+                noteSpeed = GameData.pSpeed;
+                break;
+            case 1:
+                noteSpeed = GameData.dSpeed;
+                break;
+            case 2:
+                noteSpeed = GameData.tSpeed;
+                break;
+            default:
+                Debug.LogError("Invalid gamemode");
+                break;
+        }
+    }
+
+
 
 
 
@@ -168,6 +196,15 @@ public class ObjectSpawner : MonoBehaviour
         // Load all wav files
         files = GetResourceFiles("*.wav");
     }
+
+
+
+
+
+
+
+
+
 
 
 

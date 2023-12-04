@@ -4,6 +4,12 @@ using UnityEngine;
 
 public static class GameData
 {
+
+    public static int difficulty = 1;
+    public static float pSpeed = 4;
+    public static float dSpeed = 6;
+    public static float tSpeed = 8;
+
     public static List<string> PianoEasy = new List<string>
     {
         "0,192,252,5,0,0:0:0:0:,D8",
