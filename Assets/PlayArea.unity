@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 99
+  toggleKey2: 101
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -1454,11 +1455,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
+  toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.63
+  perfectDetectHeight: 0.28
   gameMode: 1
 --- !u!212 &185261233
 SpriteRenderer:
@@ -1558,6 +1560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 122
+  toggleKey2: 113
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -5480,11 +5483,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
+  toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.63
+  perfectDetectHeight: 0.28
   gameMode: 1
 --- !u!212 &513738821
 SpriteRenderer:
@@ -5584,6 +5588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 109
+  toggleKey2: 117
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -7257,6 +7262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 97
+  toggleKey2: 49
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -8198,6 +8204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 118
+  toggleKey2: 114
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -11509,6 +11516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 103
+  toggleKey2: 53
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -11965,6 +11973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 102
+  toggleKey2: 52
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -12633,11 +12642,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
+  toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.63
+  perfectDetectHeight: 0.28
   gameMode: 1
 --- !u!212 &1204989348
 SpriteRenderer:
@@ -13606,6 +13616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 98
+  toggleKey2: 116
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -14778,6 +14789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 115
+  toggleKey2: 50
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -15346,6 +15358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 100
+  toggleKey2: 51
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -15696,6 +15709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 120
+  toggleKey2: 119
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -15800,6 +15814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 104
+  toggleKey2: 54
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -16480,11 +16495,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
+  toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.63
+  perfectDetectHeight: 0.28
   gameMode: 1
 --- !u!212 &1513168327
 SpriteRenderer:
@@ -16999,6 +17015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 32
+  toggleKey2: 0
   detectWidth: 0.62
   detectHeight: 1.88
   offsetX: 0
@@ -17568,6 +17585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 106
+  toggleKey2: 55
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -17876,6 +17894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 107
+  toggleKey2: 56
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -21585,6 +21604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
+  toggleKey2: 105
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0
@@ -22548,6 +22568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 110
+  toggleKey2: 121
   detectWidth: 0.06
   detectHeight: 2.31
   offsetX: 0

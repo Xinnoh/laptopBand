@@ -60,6 +60,7 @@ public class ScoreManager : MonoBehaviour
                 else if (hitType == "Great") pianoGreats++;
                 else if (hitType == "Miss") pianoMisses++;
                 AdjustVolume(hitType, ref piano, ref pianoVolume);
+                UpdateScoreDisplay(pianoScore, pianoMax, pianoScoreText);
                 break;
             case 1:
                 drumScore += points;
@@ -68,6 +69,7 @@ public class ScoreManager : MonoBehaviour
                 else if (hitType == "Great") drumGreats++;
                 else if (hitType == "Miss") drumMisses++;
                 AdjustVolume(hitType, ref drum, ref drumVolume);
+                UpdateScoreDisplay(drumScore, drumMax, drumScoreText);
                 break;
             case 2:
                 trumpetScore += points;

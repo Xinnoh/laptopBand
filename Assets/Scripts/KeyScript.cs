@@ -7,7 +7,7 @@ public class KeyScript : MonoBehaviour
 {
     
 
-    public KeyCode toggleKey = KeyCode.Space; // Set your desired key here
+    public KeyCode toggleKey, toggleKey2; // Set your desired key here
     private SpriteRenderer spriteRenderer;
     public float detectWidth = 2f;
     public float detectHeight = 2f;
@@ -27,18 +27,18 @@ public class KeyScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (Input.GetKeyDown(toggleKey) || Input.GetKeyDown(toggleKey2))
         {
             SetOpacity(1f); 
             CheckAndPlayNote();
         }
 
-        if (Input.GetKey(toggleKey))
+        if (Input.GetKey(toggleKey) || Input.GetKey(toggleKey2))
         {
             CheckAndPlayHeldNotes();
         }
 
-        if (Input.GetKeyUp(toggleKey))
+        if (Input.GetKeyUp(toggleKey) || Input.GetKeyUp(toggleKey2))
         {
             SetOpacity(0.5f); 
         }
