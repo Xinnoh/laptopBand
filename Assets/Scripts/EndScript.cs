@@ -5,6 +5,7 @@ public class EndCollisionHandler : MonoBehaviour
     public int gamemode;
     public Vector2 detectionSize = new Vector2(1f, 1f); // Size of the detection area
     public Vector2 offset; // Offset for the detection area
+    public bool levelSelect;
 
     private void Update()
     {
@@ -24,8 +25,11 @@ public class EndCollisionHandler : MonoBehaviour
                 if (moveNoteScript != null && !moveNoteScript.played)
                 {
                     moveNoteScript.PlayNote(false); 
-                    ScoreManager.Instance.RegisterHit("Miss", gamemode);
+                    if(!levelSelect)
+                    {
+                        ScoreManager.Instance.RegisterHit("Miss", gamemode);
 
+                    }
                     return true;
                 }
             }
