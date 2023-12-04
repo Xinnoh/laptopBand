@@ -84,7 +84,6 @@ public class GameState : MonoBehaviour
     {
         string filename = Path.GetFileNameWithoutExtension(fileName);
         AudioClip clip = Resources.Load<AudioClip>(filename);
-        Debug.Log("Attempting to load: " + filename);
 
         if (audioSource != null && clip != null)
         {
@@ -121,10 +120,7 @@ public class GameState : MonoBehaviour
 
     IEnumerator StartSong(float delay)
     {
-        Debug.Log("Enter");
         yield return new WaitForSeconds(delay);
-
-        Debug.Log("Delay");
 
         instSource.UnPause();
         pianoSound.UnPause();

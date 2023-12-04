@@ -20,11 +20,18 @@ public class ObjectSpawner : MonoBehaviour
     public bool spawning, complete;
     public int gamemode, difficulty;
 
-    private float lastSpawnTime;
+    private int currentDataLineIndex = 0;
+
+    private float lastSpawnTime, spawnTime, xPosition, objectType, endTime;
+    private string lastSection;
+    private string[] subParts;
+    private Vector3 nextStartPos;
 
     private FileInfo[] files = null;
 
     private List<string> dataLines = new List<string> { };
+
+    // data for next object
 
 
     void Start()
@@ -34,6 +41,7 @@ public class ObjectSpawner : MonoBehaviour
         SetNoteSpeed();
         loadObjects();
         complete = false;
+        GetObjectData();
     }
 
     private void Update()
@@ -41,115 +49,107 @@ public class ObjectSpawner : MonoBehaviour
         if (spawning)
         {
             timer += Time.deltaTime;
+            if (timer >= spawnTime)
+            {
+                SpawnObject();
+                GetObjectData();
+
+                if(timer >= spawnTime)  //account for two notes at once
+                {
+                    SpawnObject();
+                    GetObjectData();
+                }
+            }
         }
+    }
+
+    void GetObjectData()
+    {
+        if (currentDataLineIndex < dataLines.Count)
+        {
+            string line = dataLines[currentDataLineIndex];
+            var parts = line.Split(',');
+            spawnTime = float.Parse(parts[2]) / 1000.0f;
+            xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
+            nextStartPos = new Vector3(xPosition + xOffset, yOffset, 0);
+            objectType = float.Parse(parts[3]);     // if 1: note, if 128: hold note
+            lastSection = parts.Last();
+            subParts = lastSection.Split(':');
+            endTime = float.Parse(subParts[0]) / 1000f;
+
+            currentDataLineIndex++;
+        }
+        else
+        { 
+            complete = true;
+        }
+    }
+
+    void SpawnObject()
+    {
+        float upwardAdjustment = CalculateUpwardAdjustment(spawnTime, timer, noteSpeed);
+
+        Vector3 adjustedPosition = new Vector3(nextStartPos.x, nextStartPos.y + upwardAdjustment, nextStartPos.z);
+
+        GameObject newNote = Instantiate(note, adjustedPosition, Quaternion.identity);
+        MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
+        moveNoteScript.speed = noteSpeed;
+
+        if(objectType == 128)
+        {
+            SpawnHold(adjustedPosition);
+        }
+    }
+
+    // Because unity runs at 60fps, it won't get the spawn position perfect. This fixes it
+    float CalculateUpwardAdjustment(float spawnTime, float timer, float noteSpeed)
+    {
+        float frameDuration = 1f / 60f; 
+        float maxMovementPerFrame = noteSpeed * frameDuration;
+
+        float timeDifference = timer - spawnTime;
+
+        if (timeDifference <= 0)
+        {
+            return 0f;
+        }
+
+        return Mathf.Min(timeDifference / frameDuration, 1) * maxMovementPerFrame;
+    }
+
+    void SpawnHold(Vector3 adjustedPosition)
+    {
+        float holdLength = (endTime - spawnTime);
+
+        float distance = holdLength * noteSpeed;
+        Vector3 holdPos = new Vector3(xPosition + xOffset, yOffset - distance, 0);
+
+
+        GameObject holdEnd = Instantiate(note, holdPos, Quaternion.identity);
+
+        MoveNote holdScript = holdEnd.GetComponent<MoveNote>();
+        holdScript.speed = noteSpeed;
+        holdScript.holdEnd = true;
+
+        GameObject rectangle = Instantiate(rectanglePrefab, transform);
+        MoveSliderBody rectScript = rectangle.GetComponent<MoveSliderBody>();
+        rectScript.speed = noteSpeed;
+
+        PositionRectangleBetweenPoints(adjustedPosition, holdPos, rectangle);
+    }
+
+
+    public IEnumerator StartGame(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        spawning = true;
     }
 
 
     public void startSpawning(float delay)
     {
         spawning = true;
-        StartCoroutine(SpawnObjects(delay));
-    }
-
-
-    // Audio file loading
-    private FileInfo[] GetResourceFiles(string searchPattern)
-    {
-        DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath + "\\Resources");
-        FileInfo[] files = dirInfo.GetFiles(searchPattern);
-        return files;
-    }
-
-
-    IEnumerator SpawnObjects(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        float lastSpawnTime = 0.0f;
-
-        foreach (string line in dataLines)
-        {
-            var parts = line.Split(',');
-            // Convert 0 to 512 to a custom range
-            float xPosition = MapPosition(float.Parse(parts[0]), spawnWidth);
-            Vector3 startPos = new Vector3(xPosition + xOffset, yOffset, 0);
-
-            //Find time difference between current and next note
-
-            float spawnTime = float.Parse(parts[2]) / 1000.0f;
-
-            Debug.Log("Diff: "+ (timer - spawnTime));
-
-            // Check if the coroutine is behind schedule
-            if (timer > spawnTime)
-            {
-                // Calculate how much the coroutine is behind
-                float delayAdjustment = timer - spawnTime;
-
-                // Adjust the wait time to try and catch up
-                float adjustedWaitTime = spawnTime - lastSpawnTime - delayAdjustment;
-
-                // Ensure the wait time is not negative
-                adjustedWaitTime = Mathf.Max(0, adjustedWaitTime);
-
-                yield return new WaitForSeconds(adjustedWaitTime);
-            }
-            else
-            {
-                yield return new WaitForSeconds(spawnTime - lastSpawnTime);
-            }
-
-            lastSpawnTime = spawnTime;
-
-            if (spawnTime > lastSpawnTime)
-            {
-                yield return new WaitForSeconds(spawnTime - lastSpawnTime);
-                lastSpawnTime = spawnTime;
-            }
-
-            float objectType = float.Parse(parts[3]);
-
-            //Normal Notes
-
-            GameObject newNote = Instantiate(note, startPos, Quaternion.identity);
-            MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
-            moveNoteScript.speed = noteSpeed;
-
-            if (gamemode == 2)
-            {
-                moveNoteScript.holdEnd = true;
-            }
-
-            //Long notes ending
-            if (objectType == 128)
-            {
-                string lastSection = parts.Last();
-                string[] subParts = lastSection.Split(':');
-                float endTime = float.Parse(subParts[0]) / 1000f;
-                float holdLength = (endTime - spawnTime);
-
-
-                // I need to calculate how far down the startPos of the holdend should be. The higher the holdLength or noteSpeed, the further the distance.
-                float distance = holdLength * noteSpeed;
-                Vector3 holdPos = new Vector3(xPosition + xOffset, yOffset - distance, 0);
-
-
-                GameObject holdEnd = Instantiate(note, holdPos, Quaternion.identity);
-
-                MoveNote holdScript = holdEnd.GetComponent<MoveNote>();
-                holdScript.speed = noteSpeed;
-                holdScript.holdEnd = true;
-
-                GameObject rectangle = Instantiate(rectanglePrefab, transform);
-                MoveSliderBody rectScript = rectangle.GetComponent<MoveSliderBody>();
-                rectScript.speed = noteSpeed;
-
-
-                PositionRectangleBetweenPoints(startPos, holdPos, rectangle);
-            }
-        }
-        complete = true;
-        spawning = false;
+        StartCoroutine(StartGame(delay));
     }
 
     float MapPosition(float originalPosition, float targetMax)
@@ -200,6 +200,14 @@ public class ObjectSpawner : MonoBehaviour
 
 
 
+
+    // Audio file loading
+    private FileInfo[] GetResourceFiles(string searchPattern)
+    {
+        DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath + "\\Resources");
+        FileInfo[] files = dirInfo.GetFiles(searchPattern);
+        return files;
+    }
     void loadObjects()
     {
 
@@ -245,6 +253,7 @@ public class ObjectSpawner : MonoBehaviour
         // Load all wav files
         files = GetResourceFiles("*.wav");
     }
+
 
 
 
