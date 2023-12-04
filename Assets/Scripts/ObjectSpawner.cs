@@ -17,7 +17,7 @@ public class ObjectSpawner : MonoBehaviour
     public float noteSpeed = 5f;
     private float timer;
 
-    public bool spawning, complete;
+    public bool spawning, ending, complete;
     public int gamemode, difficulty;
 
     private int currentDataLineIndex = 0;
@@ -36,11 +36,10 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
-        timer = 0;
         difficulty = GameData.difficulty;
+        ResetVariables();
         SetNoteSpeed();
         loadObjects();
-        complete = false;
         GetObjectData();
     }
 
@@ -53,12 +52,6 @@ public class ObjectSpawner : MonoBehaviour
             {
                 SpawnObject();
                 GetObjectData();
-
-                if(timer >= spawnTime)  //account for two notes at once
-                {
-                    SpawnObject();
-                    GetObjectData();
-                }
             }
         }
     }
@@ -80,8 +73,8 @@ public class ObjectSpawner : MonoBehaviour
             currentDataLineIndex++;
         }
         else
-        { 
-            complete = true;
+        {
+            ending = true;
         }
     }
 
@@ -95,16 +88,18 @@ public class ObjectSpawner : MonoBehaviour
         MoveNote moveNoteScript = newNote.GetComponent<MoveNote>();
         moveNoteScript.speed = noteSpeed;
 
-        if(objectType == 128)
-        {
+        if (objectType == 128){
             SpawnHold(adjustedPosition);
+        }
+        if(ending){
+            complete = true;
         }
     }
 
     // Because unity runs at 60fps, it won't get the spawn position perfect. This fixes it
     float CalculateUpwardAdjustment(float spawnTime, float timer, float noteSpeed)
     {
-        float frameDuration = 1f / 60f; 
+        float frameDuration = 1f / 60f;
         float maxMovementPerFrame = noteSpeed * frameDuration;
 
         float timeDifference = timer - spawnTime;
@@ -196,6 +191,13 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
+
+    void ResetVariables()
+    {
+        timer = 0;
+        complete = false;
+        ending = false;
+    }
 
 
 

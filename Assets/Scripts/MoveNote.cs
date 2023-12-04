@@ -23,15 +23,9 @@ public class MoveNote : MonoBehaviour
     {
         if (!played)
         {
-            // If the note is hit, play the audio and particle effect
+            // If the note is hit, play the particle effect
             if (isHit)
             {
-                AudioSource audioSource = GetComponent<AudioSource>();
-                if (audioSource != null)
-                {
-                    audioSource.Play();
-                }
-
                 if (noteParticleSystem != null)
                 {
                     noteParticleSystem.Play();
@@ -58,7 +52,6 @@ public class MoveNote : MonoBehaviour
             // Mark as played and stop movement
             played = true;
 
-            // Schedule the object for deletion after 3 seconds
             Destroy(gameObject, 1f);
         }
     }

@@ -169,12 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 99
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &31353815
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1454,12 +1454,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
-  detectWidth: 1
-  detectHeight: 1.78
+  detectWidth: 0.29
+  detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.63
-  keyType: 1
+  gameMode: 1
 --- !u!212 &185261233
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1558,12 +1558,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 122
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &194742105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1952,7 +1952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 72.72%
+  m_text: 100.00%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2627,7 +2627,7 @@ Transform:
   m_GameObject: {fileID: 291429213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 5.010207, y: 0.19150865, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5480,12 +5480,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
-  detectWidth: 1
-  detectHeight: 1.78
+  detectWidth: 0.29
+  detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.63
-  keyType: 1
+  gameMode: 1
 --- !u!212 &513738821
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5584,12 +5584,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 109
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &527335761
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5763,6 +5763,7 @@ MonoBehaviour:
   yOffset: -4.41
   noteSpeed: 4
   spawning: 0
+  ending: 0
   complete: 0
   gamemode: 2
   difficulty: 0
@@ -7256,12 +7257,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 97
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &718748290
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8197,12 +8198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 118
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &778120655
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9276,6 +9277,7 @@ MonoBehaviour:
   yOffset: -4.41
   noteSpeed: 10
   spawning: 0
+  ending: 0
   complete: 0
   gamemode: 1
   difficulty: 0
@@ -10645,7 +10647,7 @@ Transform:
   m_GameObject: {fileID: 964511049}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11, y: 0, z: 0}
+  m_LocalPosition: {x: -11, y: 1, z: 0}
   m_LocalScale: {x: 5.010207, y: 0.19150865, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11507,12 +11509,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 103
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1063509146
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11622,7 +11624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 72.72%
+  m_text: 100.00%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11756,7 +11758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 72.72%
+  m_text: 100.00%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11963,12 +11965,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 102
-  detectWidth: 1
-  detectHeight: 1.4
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.32
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1139465138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12236,6 +12238,7 @@ MonoBehaviour:
   yOffset: -4.41
   noteSpeed: 4.5
   spawning: 0
+  ending: 0
   complete: 0
   gamemode: 0
   difficulty: 0
@@ -12627,12 +12630,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
-  detectWidth: 1
-  detectHeight: 1.78
+  detectWidth: 0.29
+  detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.63
-  keyType: 1
+  gameMode: 1
 --- !u!212 &1204989348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13600,12 +13603,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 98
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1301381223
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14772,12 +14775,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 115
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1363306137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14864,7 +14867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 721, y: 488}
+  m_AnchoredPosition: {x: 734, y: 421}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1370243021
@@ -14887,7 +14890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: 'Score: 100.00%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14950,7 +14953,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -79.275566, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -15340,12 +15343,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 100
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1453913955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15690,12 +15693,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 120
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1478932505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15794,12 +15797,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 104
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1479740893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16474,12 +16477,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
-  detectWidth: 1
-  detectHeight: 1.78
+  detectWidth: 0.29
+  detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.63
-  keyType: 1
+  gameMode: 1
 --- !u!212 &1513168327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16993,12 +16996,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 32
-  detectWidth: 1
-  detectHeight: 2
+  detectWidth: 0.62
+  detectHeight: 1.88
   offsetX: 0
-  offsetY: -0.5
-  perfectDetectHeight: 1
-  keyType: 2
+  offsetY: -0.15
+  perfectDetectHeight: 0.69
+  gameMode: 2
 --- !u!1 &1546063691
 GameObject:
   m_ObjectHideFlags: 0
@@ -17094,7 +17097,7 @@ Transform:
   m_GameObject: {fileID: 1546063691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 0, z: 0}
+  m_LocalPosition: {x: -5.5, y: 1, z: 0}
   m_LocalScale: {x: 5.010207, y: 0.19150865, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17562,12 +17565,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 106
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1589491808
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17870,12 +17873,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 107
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &1609761447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21579,12 +21582,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 44
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &2054098094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22542,12 +22545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 110
-  detectWidth: 1
-  detectHeight: 1
+  detectWidth: 0.06
+  detectHeight: 2.31
   offsetX: 0
   offsetY: -0.5
-  perfectDetectHeight: 0.5
-  keyType: 0
+  perfectDetectHeight: 0.79
+  gameMode: 0
 --- !u!212 &2140882016
 SpriteRenderer:
   m_ObjectHideFlags: 0

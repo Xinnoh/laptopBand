@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class KeyScript : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class KeyScript : MonoBehaviour
     public float offsetX, offsetY;
     public float perfectDetectHeight; // Smaller width for the 'Perfect' hit detection
 
-    public int keyType;
+    public int gameMode;
 
     void Start()
     {
@@ -41,6 +42,12 @@ public class KeyScript : MonoBehaviour
         {
             SetOpacity(0.5f); 
         }
+
+        if(gameMode == 2)
+        {
+            CollideNotes();
+        }
+        
     }
 
     void SetOpacity(float alpha)
@@ -52,6 +59,19 @@ public class KeyScript : MonoBehaviour
             spriteRenderer.color = color;
         }
     }
+
+    void CollideNotes()
+    {
+        bool isPerfectHit = CheckHit(new Vector2(detectWidth, perfectDetectHeight), "Perfect");
+
+        if (isPerfectHit)
+        {
+            Debug.Log("Perfect hit!");
+            // Update the score for a perfect hit
+            ScoreManager.Instance.RegisterHit("Perfect", gameMode);
+        }
+    }
+
     private void CheckAndPlayNote()
     {
         string hitType = "Miss"; // Default to "Miss" if no hit is detected
@@ -73,32 +93,40 @@ public class KeyScript : MonoBehaviour
         if(hitType != "Miss")
         {
             // Register the hit with the ScoreManager
-            ScoreManager.Instance.RegisterHit(hitType, keyType);
+            ScoreManager.Instance.RegisterHit(hitType, gameMode);
         }
     }
 
-
     private void CheckAndPlayHeldNotes()
     {
-
         Vector2 size = new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2);
         Vector2 boxCenter = (Vector2)transform.position + new Vector2(offsetX, offsetY);
 
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(boxCenter, size, 0);
 
+        Collider2D closestNoteCollider = null;
+        float minDistance = float.MaxValue;
+
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Note"))
             {
-                MoveNote moveNoteScript = hitCollider.gameObject.GetComponent<MoveNote>();
-                if (moveNoteScript != null && !moveNoteScript.played)
+                float distance = Vector2.Distance(hitCollider.transform.position, boxCenter);
+                if (distance < minDistance)
                 {
-                    if (moveNoteScript.holdEnd)
-                    {
-                        moveNoteScript.PlayNote(true);
-                        Debug.Log("Perfect" + " hit!");
-                    }
+                    closestNoteCollider = hitCollider;
+                    minDistance = distance;
                 }
+            }
+        }
+
+        if (closestNoteCollider != null)
+        {
+            MoveNote moveNoteScript = closestNoteCollider.GetComponent<MoveNote>();
+            if (moveNoteScript != null && !moveNoteScript.played && moveNoteScript.holdEnd)
+            {
+                moveNoteScript.PlayNote(true);
+                Debug.Log("Perfect" + " hit!");
             }
         }
     }
@@ -134,11 +162,16 @@ public class KeyScript : MonoBehaviour
         // Central 'Perfect' hit detection area
         DrawHitDetectionGizmo(new Vector2(detectWidth, perfectDetectHeight), new Color(0, 1, 0, 0.5f)); // Green, semi-transparent
 
+        if(gameMode != 2)
+        {
+
         // Top 'Great' early hit detection area
         DrawHitDetectionGizmo(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), new Color(1, 1, 0, 0.5f), new Vector2(0, -(perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)); // Yellow, semi-transparent
 
         // Bottom 'Great' late hit detection area
         DrawHitDetectionGizmo(new Vector2(detectWidth, (detectHeight - perfectDetectHeight) / 2), new Color(1, 1, 0, 0.5f), new Vector2(0, (perfectDetectHeight + (detectHeight - perfectDetectHeight) / 2) / 2)); // Yellow, semi-transparent
+
+        }
     }
 
     private void DrawHitDetectionGizmo(Vector2 size, Color color, Vector2 additionalOffset = default)
