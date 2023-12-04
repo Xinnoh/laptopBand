@@ -10,6 +10,12 @@ public static class GameData
     public static float dSpeed = 6;
     public static float tSpeed = 8;
 
+
+    public static int pianoScore, pianoMax, pianoPerfects, pianoGreats, pianoMisses;
+    public static int drumScore, drumMax, drumPerfects, drumGreats, drumMisses;
+    public static int trumpetScore, trumpetMax, trumpetPerfects, trumpetGreats, trumpetMisses;
+    public static int overallScore, overallMax;
+
     public static List<string> PianoEasy = new List<string>
     {
         "0,192,252,5,0,0:0:0:0:,D8",

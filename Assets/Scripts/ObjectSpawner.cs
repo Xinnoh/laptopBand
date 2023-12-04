@@ -12,6 +12,7 @@ public class ObjectSpawner : MonoBehaviour
     public float xOffset, yOffset;
     public float noteSpeed = 5f;
 
+    public bool complete;
     public int gamemode, difficulty;
 
     private FileInfo[] files = null;
@@ -24,6 +25,7 @@ public class ObjectSpawner : MonoBehaviour
         difficulty = GameData.difficulty;
         SetNoteSpeed();
         loadObjects();
+        complete = false;
     }
 
 
@@ -102,6 +104,7 @@ public class ObjectSpawner : MonoBehaviour
                 PositionRectangleBetweenPoints(newNote.transform, holdPos, rectangle);
             }
         }
+        complete = true;
     }
 
     float MapPosition(float originalPosition, float targetMax)

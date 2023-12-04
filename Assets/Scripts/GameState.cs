@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -15,21 +16,22 @@ public class GameState : MonoBehaviour
     private float pianoDelay, drumDelay, trumpetDelay;
     private float songBPM, songDelay, songOffset;
     private float travelDistance = 6.17f;
+    private float maxDelay;
 
     private string audioFileName;
     private string pianoFile, drumFile, trumpetFile, instFile;
     private FileInfo[] files = null;
     private List<string> dataLines = new List<string> { };
-    
+    private bool ending;
 
     private void Start()
     {
+        resetValues();
         songDiff = GameData.difficulty;
 
         piano.noteSpeed = GameData.pSpeed;
         drum.noteSpeed = GameData.dSpeed;
         trumpet.noteSpeed = GameData.tSpeed;
-
 
         // Load all wav files
         files = GetResourceFiles("*.wav", "*.ogg");
@@ -51,12 +53,11 @@ public class GameState : MonoBehaviour
             Debug.Log("no song loaded: " + songDiff);
         }
 
-
         pianoDelay = CalculateTimeToTravel(travelDistance, piano.noteSpeed);
         drumDelay = CalculateTimeToTravel(travelDistance, drum.noteSpeed);
         trumpetDelay = CalculateTimeToTravel(travelDistance, trumpet.noteSpeed);
 
-        float maxDelay = Mathf.Max(pianoDelay, drumDelay, trumpetDelay);
+        maxDelay = Mathf.Max(pianoDelay, drumDelay, trumpetDelay);
         
         pianoDelay = maxDelay - pianoDelay;
         drumDelay = maxDelay - drumDelay;
@@ -64,6 +65,20 @@ public class GameState : MonoBehaviour
         songDelay = maxDelay + songOffset;
     }
 
+    private void Update()
+    {
+        if(piano.complete && drum.complete && trumpet.complete && !ending) 
+        {
+            StartCoroutine(Complete(maxDelay));
+            ending = true;
+        }
+    }
+
+    IEnumerator Complete(float delay)
+    {
+        yield return new WaitForSeconds(delay + 2f);
+        SceneManager.LoadScene(3);
+    }
 
     void LoadAndPlay(string fileName, AudioSource audioSource)
     {
@@ -125,6 +140,11 @@ public class GameState : MonoBehaviour
         // Combine wav and ogg files into a single array
         FileInfo[] allFiles = wavFiles.Concat(oggFiles).ToArray();
         return allFiles;
+    }
+
+    private void resetValues()
+    {
+        ending = false;
     }
 
 }
