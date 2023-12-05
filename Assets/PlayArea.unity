@@ -21338,6 +21338,10 @@ MonoBehaviour:
   button3: 0
   button4: 0
   trumpetKey: {fileID: 1545959130}
+  drum1: {fileID: 1204989347}
+  drum2: {fileID: 185261232}
+  drum3: {fileID: 513738820}
+  drum4: {fileID: 1513168326}
 --- !u!4 &2146068225
 Transform:
   m_ObjectHideFlags: 0
