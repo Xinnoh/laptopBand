@@ -33,23 +33,26 @@ public class KeyScript : MonoBehaviour
 
     void Update()
     {
+        //All
         if (Input.GetKeyDown(toggleKey) || Input.GetKeyDown(toggleKey2))
         {
             SetOpacity(1f); 
             CheckAndPlayNote();
         }
 
+        //Piano only
         if (Input.GetKey(toggleKey) || Input.GetKey(toggleKey2))
         {
             CheckAndPlayHeldNotes();
         }
 
+        //All
         if (Input.GetKeyUp(toggleKey) || Input.GetKeyUp(toggleKey2))
         {
             SetOpacity(0f); 
         }
 
-
+        //Trumpet only
         if (gameMode == 2)
         {
             CollideNotes();

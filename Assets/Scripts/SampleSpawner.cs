@@ -19,6 +19,7 @@ public class SampleSpawner : MonoBehaviour
     public float spawnWidth = 1f;
     public GameObject pianoPrefab, drumPrefab, thirdPrefab;
 
+    public MoveUp cover;
 
     private void Start()
     {
@@ -112,6 +113,13 @@ public class SampleSpawner : MonoBehaviour
         GameData.dSpeed = dSpeed;
         GameData.tSpeed = tSpeed;
         GameData.difficulty = difficulty;
+        StartCoroutine(NextScene(0.2f));
+    }
+
+    IEnumerator NextScene(float delay)
+    {
+        cover.moveUp = true;
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(2);
 
     }

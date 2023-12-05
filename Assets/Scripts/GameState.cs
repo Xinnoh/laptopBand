@@ -24,6 +24,8 @@ public class GameState : MonoBehaviour
     private List<string> dataLines = new List<string> { };
     private bool ending;
 
+    public MoveUp cover;
+
     private void Start()
     {
         resetValues();
@@ -76,7 +78,9 @@ public class GameState : MonoBehaviour
 
     IEnumerator Complete(float delay)
     {
-        yield return new WaitForSeconds(delay + 2f);
+        yield return new WaitForSeconds(delay + 2f - 0.3f);
+        cover.moveUp = true;
+        yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(3);
     }
 
