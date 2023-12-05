@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class GameState : MonoBehaviour
 
     public ObjectSpawner piano, drum, trumpet;
     public AudioSource instSource, pianoSound, drumSound, trumpetSound;
+    public TextMeshProUGUI songTitle;
 
     private float pianoDelay, drumDelay, trumpetDelay;
     private float songBPM, songDelay, songOffset;
@@ -23,6 +25,7 @@ public class GameState : MonoBehaviour
     private FileInfo[] files = null;
     private List<string> dataLines = new List<string> { };
     private bool ending;
+    public GameObject startButton;
 
     public MoveUp cover;
 
@@ -65,6 +68,22 @@ public class GameState : MonoBehaviour
         drumDelay = maxDelay - drumDelay;
         trumpetDelay = maxDelay - trumpetDelay;
         songDelay = maxDelay + songOffset;
+
+        switch(songDiff)
+        {
+            case 0:
+                songTitle.text = "Tutorial";
+                return;
+            case 1:
+                songTitle.text = "Easy - Underfell Sans";
+                return;
+            case 2:
+                songTitle.text = "Normal - Enemy Approaching";
+                return;
+            case 3:
+                songTitle.text = "Prove Your Worth";
+                return;
+        }
     }
 
     private void Update()
@@ -114,6 +133,14 @@ public class GameState : MonoBehaviour
 
     public void startGame()
     {
+        StartCoroutine(StartGame(1f)); 
+    }
+
+    IEnumerator StartGame(float delay)
+    {
+        Destroy(startButton);
+        yield return new WaitForSeconds(delay);
+
         piano.startSpawning(pianoDelay);
         drum.startSpawning(drumDelay);
         trumpet.startSpawning(trumpetDelay);

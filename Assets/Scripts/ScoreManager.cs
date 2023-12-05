@@ -115,7 +115,7 @@ public class ScoreManager : MonoBehaviour
         overallScore = pianoScore + drumScore + trumpetScore;
         overallMax = pianoMax + drumMax + trumpetMax;
         float overallScorePercentage = (float)overallScore / overallMax * 100f;
-        overallScoreText.text = $"{overallScorePercentage:F2}%";
+        overallScoreText.text = "Total Score: " + $"{overallScorePercentage:F2}%";
     }
 
 
