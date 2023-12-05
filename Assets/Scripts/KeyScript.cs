@@ -24,6 +24,10 @@ public class KeyScript : MonoBehaviour
         if (spriteRenderer == null)
         {
             Debug.LogError("SpriteRenderer component not found on the GameObject");
+            if(gameMode < 2)
+            {
+                SetOpacity(0f);
+            }
         }
     }
 
@@ -42,7 +46,7 @@ public class KeyScript : MonoBehaviour
 
         if (Input.GetKeyUp(toggleKey) || Input.GetKeyUp(toggleKey2))
         {
-            SetOpacity(0.5f); 
+            SetOpacity(0f); 
         }
 
 
