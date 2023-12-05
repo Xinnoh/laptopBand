@@ -7,7 +7,7 @@ public class TrumpetControl : MonoBehaviour
 
     [Range(0.0f, 256.0f)]
     public float arduinoVal;
-    private const float arduinoMax = 256;
+    public float arduinoMax = 900;
 
     public float xOffset;
     public float yOffset;

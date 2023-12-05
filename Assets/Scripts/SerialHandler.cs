@@ -6,7 +6,7 @@ using System;
 
 public class SerialHandler : MonoBehaviour
 {
-    SerialPort stream = new SerialPort("COM3", 9600);
+    SerialPort stream = new SerialPort("COM7", 9600);
 
     public int button1, button2, button3, button4;
     private float trumpetVal;
@@ -35,16 +35,14 @@ public class SerialHandler : MonoBehaviour
                 string[] sArray = serVal.Split(',');
                 if (sArray.Length == 5)
                 {
-                    button1 = int.Parse(sArray[0]);
+                    /*button1 = int.Parse(sArray[0]);
                     button2 = int.Parse(sArray[1]);
                     button3 = int.Parse(sArray[2]);
-                    button4 = int.Parse(sArray[3]);
-                    trumpetVal = float.Parse(sArray[4]);
-
-                    // Normalize trumpet movement
-
-                    trumpetKey.arduinoVal = trumpetVal;
+                    button4 = int.Parse(sArray[3]);*/
                 }
+
+                trumpetVal = float.Parse(sArray[0]);
+                trumpetKey.arduinoVal = trumpetVal;
             }
             catch (TimeoutException) { }
             catch (Exception e)

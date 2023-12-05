@@ -74,6 +74,7 @@ public class ObjectSpawner : MonoBehaviour
         }
         else
         {
+            spawning = false;
             ending = true;
         }
     }
@@ -197,6 +198,7 @@ public class ObjectSpawner : MonoBehaviour
         timer = 0;
         complete = false;
         ending = false;
+        spawning = false;
     }
 
 
