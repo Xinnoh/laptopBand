@@ -175,6 +175,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &31353815
 SpriteRenderer:
@@ -1454,13 +1455,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fa677cf72784444bd6d3b096a22a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 44
+  toggleKey: 258
   toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.28
+  drumDown: 0
   gameMode: 1
 --- !u!212 &185261233
 SpriteRenderer:
@@ -1566,6 +1568,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &194742105
 SpriteRenderer:
@@ -5482,13 +5485,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fa677cf72784444bd6d3b096a22a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 44
+  toggleKey: 259
   toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.28
+  drumDown: 0
   gameMode: 1
 --- !u!212 &513738821
 SpriteRenderer:
@@ -5594,6 +5598,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &527335761
 SpriteRenderer:
@@ -7268,6 +7273,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &718748290
 SpriteRenderer:
@@ -8210,6 +8216,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &778120655
 SpriteRenderer:
@@ -11522,6 +11529,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1063509146
 SpriteRenderer:
@@ -11979,6 +11987,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1139465138
 SpriteRenderer:
@@ -12641,13 +12650,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fa677cf72784444bd6d3b096a22a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 44
+  toggleKey: 257
   toggleKey2: 0
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.28
+  drumDown: 0
   gameMode: 1
 --- !u!212 &1204989348
 SpriteRenderer:
@@ -13622,6 +13632,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1301381223
 SpriteRenderer:
@@ -14795,6 +14806,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1363306137
 SpriteRenderer:
@@ -15364,6 +15376,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1453913955
 SpriteRenderer:
@@ -15715,6 +15728,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1478932505
 SpriteRenderer:
@@ -15820,6 +15834,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1479740893
 SpriteRenderer:
@@ -16494,13 +16509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fa677cf72784444bd6d3b096a22a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 44
-  toggleKey2: 0
+  toggleKey: 260
+  toggleKey2: 44
   detectWidth: 0.29
   detectHeight: 2.68
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.28
+  drumDown: 0
   gameMode: 1
 --- !u!212 &1513168327
 SpriteRenderer:
@@ -17021,6 +17037,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.15
   perfectDetectHeight: 0.69
+  drumDown: 0
   gameMode: 2
 --- !u!1 &1546063691
 GameObject:
@@ -17591,6 +17608,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1589491808
 SpriteRenderer:
@@ -17900,6 +17918,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &1609761447
 SpriteRenderer:
@@ -21610,6 +21629,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &2054098094
 SpriteRenderer:
@@ -22574,6 +22594,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.5
   perfectDetectHeight: 0.79
+  drumDown: 0
   gameMode: 0
 --- !u!212 &2140882016
 SpriteRenderer:
@@ -22627,6 +22648,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2146068223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146068225}
+  - component: {fileID: 2146068224}
+  m_Layer: 0
+  m_Name: ArduinoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2146068224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146068223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a06af82220ac940b6b613b3d7076fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button1: 0
+  button2: 0
+  button3: 0
+  button4: 0
+  trumpetKey: {fileID: 1545959130}
+--- !u!4 &2146068225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146068223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5552344, y: -0.008575033, z: -0.3923516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -22642,3 +22712,4 @@ SceneRoots:
   - {fileID: 1143798968}
   - {fileID: 590564799}
   - {fileID: 1021373461}
+  - {fileID: 2146068225}

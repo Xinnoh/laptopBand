@@ -14,6 +14,8 @@ public class KeyScript : MonoBehaviour
     public float offsetX, offsetY;
     public float perfectDetectHeight; // Smaller width for the 'Perfect' hit detection
 
+    public bool drumDown;
+
     public int gameMode;
 
     void Start()
@@ -43,7 +45,8 @@ public class KeyScript : MonoBehaviour
             SetOpacity(0.5f); 
         }
 
-        if(gameMode == 2)
+
+        if (gameMode == 2)
         {
             CollideNotes();
         }
