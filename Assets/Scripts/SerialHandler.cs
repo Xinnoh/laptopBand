@@ -6,7 +6,8 @@ using System;
 public class SerialHandler : MonoBehaviour
 {
     SerialPort streamCOM7 = new SerialPort("COM7", 9600);
-    SerialPort streamCOM6 = new SerialPort("COM6", 9600); // New instance for COM6
+    SerialPort streamCOM9 = new SerialPort("COM9", 9600); // New instance for COM6
+    SerialPort streamCOM10 = new SerialPort("COM10", 9600); // New instance for COM6
 
     public int button1, button2, button3, button4;
     private float trumpetVal;
@@ -27,12 +28,22 @@ public class SerialHandler : MonoBehaviour
 
         try
         {
-            streamCOM6.Open();
-            streamCOM6.ReadTimeout = 50;
+            streamCOM9.Open();
+            streamCOM9.ReadTimeout = 50;
         }
         catch (Exception e)
         {
-            Debug.LogError("Error opening COM6: " + e.Message);
+            Debug.LogError("Error opening COM9: " + e.Message);
+        }
+
+        try
+        {
+            streamCOM10.Open();
+            streamCOM10.ReadTimeout = 50;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error opening COM9: " + e.Message);
         }
     }
 
@@ -55,25 +66,41 @@ public class SerialHandler : MonoBehaviour
             }
         }
 
-        if (streamCOM6.IsOpen)
+        if (streamCOM9.IsOpen)
         {
             try
             {
-                string buttonVal = streamCOM6.ReadLine();
+                string buttonVal = streamCOM9.ReadLine();
                 string[] bArray = buttonVal.Split(',');
 
-                if (bArray.Length >= 4)
-                {
-                    button1 = int.Parse(bArray[0]);
-                    button2 = int.Parse(bArray[1]);
-                    button3 = int.Parse(bArray[2]);
-                    button4 = int.Parse(bArray[3]);
-                }
+                    button1 = int.Parse(bArray[1]);
+                    button2 = int.Parse(bArray[2]);
+                    button3 = int.Parse(bArray[3]);
+                    button4 = int.Parse(bArray[4]);
             }
             catch (TimeoutException) { }
             catch (Exception e)
             {
-                Debug.LogError("Error reading from COM6: " + e.Message);
+                Debug.LogError("Error reading from COM9: " + e.Message);
+            }
+        }
+        if (streamCOM10.IsOpen)
+        {
+            try
+            {
+                string buttonVal = streamCOM10.ReadLine();
+                string[] bArray = buttonVal.Split(',');
+
+                    button1 = int.Parse(bArray[1]);
+                    button2 = int.Parse(bArray[2]);
+                    button3 = int.Parse(bArray[3]);
+                    button4 = int.Parse(bArray[4]);
+                
+            }
+            catch (TimeoutException) { }
+            catch (Exception e)
+            {
+                Debug.LogError("Error reading from COM9: " + e.Message);
             }
         }
     }
