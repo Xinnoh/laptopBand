@@ -7,6 +7,9 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
+    // This manager takes information from all the keys, and processes the score.
+    // It also stores said score in the game data script.
+
     // Configurable point values
     private int pointsForPerfect = 3;
     private int pointsForGreat = 1;

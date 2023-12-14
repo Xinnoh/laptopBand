@@ -5,9 +5,10 @@ using UnityEngine.XR;
 
 public class KeyScript : MonoBehaviour
 {
-    
+    // This script is placed on top of each key (drum has 4, piano has 16, trumpet has 1
+    // It handles pressing the key, checking key hitbox, and playing notes
 
-    public KeyCode toggleKey, toggleKey2; // Set your desired key here
+    public KeyCode toggleKey, toggleKey2; 
     private SpriteRenderer spriteRenderer;
     public float detectWidth = 2f;
     public float detectHeight = 2f;
@@ -24,7 +25,7 @@ public class KeyScript : MonoBehaviour
         if (spriteRenderer == null)
         {
             Debug.LogError("SpriteRenderer component not found on the GameObject");
-            if(gameMode < 2)
+            if (gameMode < 2)
             {
                 SetOpacity(0f);
             }
@@ -34,11 +35,25 @@ public class KeyScript : MonoBehaviour
     void Update()
     {
         //All
-        if (Input.GetKeyDown(toggleKey) || Input.GetKeyDown(toggleKey2))
+        if (Input.GetKeyDown(toggleKey) || Input.GetKeyDown(toggleKey2) || drumDown)
         {
-            SetOpacity(1f); 
+            SetOpacity(1f);
             CheckAndPlayNote();
         }
+
+        if (gameMode == 1)
+        {
+            if (drumDown)
+            {
+                SetOpacity(1f);
+                CheckAndPlayHeldNotes();
+            }
+            else
+            {
+                SetOpacity(0f);
+            }
+        }
+
 
         //Piano only
         if (Input.GetKey(toggleKey) || Input.GetKey(toggleKey2))

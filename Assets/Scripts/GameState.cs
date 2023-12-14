@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
-    public int gameState = 0;
+    // This script is a general manager for the play scene
+
+    public int gameState = 0; 
     public int songDiff = 1;    // which difficulty was selected
 
     public ObjectSpawner piano, drum, trumpet;
@@ -90,6 +92,8 @@ public class GameState : MonoBehaviour
     {
         if(piano.complete && drum.complete && trumpet.complete && !ending) 
         {
+
+            SceneManager.LoadScene(3);
             StartCoroutine(Complete(maxDelay));
             ending = true;
         }
@@ -122,11 +126,6 @@ public class GameState : MonoBehaviour
 
     private float CalculateTimeToTravel(float distance, float speed)
     {
-        if (speed <= 0)
-        {
-            Debug.LogError("Must be positive speed");
-            return 4;
-        }
         return distance / speed;
     }
 

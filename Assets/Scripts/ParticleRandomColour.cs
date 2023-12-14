@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleRandomColour : MonoBehaviour
 {
     ParticleSystem particleSystem;
+    // This generates a random bright color for particle systems, not sure what it's for
 
     void Start()
     {

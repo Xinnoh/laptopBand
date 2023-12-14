@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static TMPro.Examples.TMP_ExampleScript_01;
@@ -10,6 +9,10 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    // This loads and spawns objects after the start button is pressed.
+    // It calculates the spawn interval, and adjusts note height to compensate any frame loss
+    // It also spawns slider bodies to match if it's spawned.
+
     public GameObject note;
     public GameObject rectanglePrefab;
     public float spawnWidth = 5f;

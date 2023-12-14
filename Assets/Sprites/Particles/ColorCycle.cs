@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ColorCycle : MonoBehaviour
 {
+    // This makes the background color change
+
     public Color[] colors; // Array of colors to cycle through
     public float transitionTime = 2f; // Time it takes to transition to the next color
 

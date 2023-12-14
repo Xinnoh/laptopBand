@@ -5,8 +5,10 @@ using System.IO.Ports;
 using System;
 public class SerialHandler : MonoBehaviour
 {
+    // This script gets data from the arduino's serial and converts it to usable information
+
+
     SerialPort streamCOM7 = new SerialPort("COM7", 9600);
-    SerialPort streamCOM9 = new SerialPort("COM9", 9600); // New instance for COM6
     SerialPort streamCOM10 = new SerialPort("COM10", 9600); // New instance for COM6
 
     public int button1, button2, button3, button4;
@@ -28,27 +30,19 @@ public class SerialHandler : MonoBehaviour
 
         try
         {
-            streamCOM9.Open();
-            streamCOM9.ReadTimeout = 50;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Error opening COM9: " + e.Message);
-        }
-
-        try
-        {
             streamCOM10.Open();
             streamCOM10.ReadTimeout = 50;
         }
         catch (Exception e)
         {
-            Debug.LogError("Error opening COM9: " + e.Message);
+            Debug.LogError("Error opening COM10: " + e.Message);
         }
     }
 
     void Update()
     {
+
+        //Trumpet
         if (streamCOM7.IsOpen)
         {
             try
@@ -66,24 +60,8 @@ public class SerialHandler : MonoBehaviour
             }
         }
 
-        if (streamCOM9.IsOpen)
-        {
-            try
-            {
-                string buttonVal = streamCOM9.ReadLine();
-                string[] bArray = buttonVal.Split(',');
 
-                    button1 = int.Parse(bArray[1]);
-                    button2 = int.Parse(bArray[2]);
-                    button3 = int.Parse(bArray[3]);
-                    button4 = int.Parse(bArray[4]);
-            }
-            catch (TimeoutException) { }
-            catch (Exception e)
-            {
-                Debug.LogError("Error reading from COM9: " + e.Message);
-            }
-        }
+        //Drums
         if (streamCOM10.IsOpen)
         {
             try
@@ -95,7 +73,17 @@ public class SerialHandler : MonoBehaviour
                     button2 = int.Parse(bArray[2]);
                     button3 = int.Parse(bArray[3]);
                     button4 = int.Parse(bArray[4]);
-                
+
+                Debug.Log(button1 + "1");//h
+                Debug.Log(button2 + "2");//s
+                Debug.Log(button3 + "3");//f
+                Debug.Log(button4 + "4");//k
+
+                drum1.drumDown = button3 != 0;
+                drum2.drumDown = button4 != 0;
+                drum3.drumDown = button3 != 0;
+                drum4.drumDown = button1 != 0;
+
             }
             catch (TimeoutException) { }
             catch (Exception e)

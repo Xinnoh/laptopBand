@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class EndCollisionHandler : MonoBehaviour
 {
+    // This script deletes notes that are missed. This prevents them from scrolling upwards across the screen
+    // If it collides with a note, it deletes it.
+
     public int gamemode;
     public Vector2 detectionSize = new Vector2(1f, 1f); // Size of the detection area
     public Vector2 offset; // Offset for the detection area

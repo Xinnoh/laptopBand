@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MoveNote : MonoBehaviour
 {
+    // This script is attached to each note. It manages whether it's played, object collisions, and how it moves.
+
     public GameObject childSprite;  // Reference to the child GameObject with the sprite
     public ParticleSystem noteParticleSystem; // Reference to the particle system
 

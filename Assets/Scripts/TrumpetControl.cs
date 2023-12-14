@@ -5,6 +5,8 @@ using UnityEngine;
 public class TrumpetControl : MonoBehaviour
 {
 
+    // This script sets the position of the trumpet's position based on the arduino.
+
     [Range(0.0f, 256.0f)]
     public float arduinoVal;
     public float arduinoMax = 900;

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SampleSpawner : MonoBehaviour
 {
+    // This is the manager for the level select screen
+    // For each instrument, it spawns a note every few seconds to show what the sample speed looks like.
+    // It also dynamically changes note speed as you change it.
+
     //Variable
     public float pSpeed, dSpeed, tSpeed;
     public int difficulty;
